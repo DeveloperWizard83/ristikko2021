@@ -1,0 +1,188 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(10, 2cm);
+  grid-template-rows: repeat(11, 2cm);
+  position: relative;
+  margin-top: 500px; /* Adjust the value as needed */
+
+
+  
+}
+
+
+.grid-item {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  border: 3px solid #000;
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  position: relative; /* Position added here */
+}
+
+.canvas {
+  position: relative;
+ 
+  
+  
+
+}
+.special-1{
+  background-image: url('assets/images/1-kysymys.png');
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-position: center center;
+  border-bottom: white;
+  
+  pointer-events: none;
+  background-color: white;
+
+}
+
+.special-2{
+  background-image: url('assets/images/2-kysymys.png');
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-position: center center;
+  border-top: white;
+  
+  pointer-events: none;
+  background-color: white;
+
+}
+
+.special-3{
+  background-image: url('assets/images/3-kysymys.png');
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-position: center center;
+  
+  
+  pointer-events: none;
+  background-color: white;
+
+}
+
+.special-4{
+  background-image: url('assets/images/4-kysymys.png');
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-position: center center;
+  
+  
+  pointer-events: none;
+  background-color: white;
+
+}
+
+.special-5{
+  background-image: url('assets/images/5-kysymys.png');
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-position: center center;
+  
+  
+  pointer-events: none;
+  background-color: white;
+
+}
+.special-6{
+  background-image: url('assets/images/6-kysymys.png');
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-position: center center;
+  
+  
+  pointer-events: none;
+  background-color: white;
+
+}
+
+.special-7{
+  background-image: url('assets/images/7-kysymys.png');
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-position: center center;
+  
+  
+  pointer-events: none;
+  background-color: white;
+
+}
+
+.special-8{
+  background-image: url('assets/images/8-kysymys.png');
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-position: center center;
+  
+  border-right: white;
+  pointer-events: none;
+  background-color: white;
+
+}
+
+.special-9{
+  background-image: url('assets/images/9-kysymys.png');
+  background-repeat: no-repeat;
+  background-size: 70%;
+  background-position: center center;
+  border-left: white;
+  border-right: white;
+  border-bottom: white;
+  pointer-events: none;
+  background-color: white;
+
+}
+
+.special-10{
+  background-image: url('assets/images/10-kysymys.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center center;
+  border-left: white;
+  
+  pointer-events: none;
+  background-color: white;
+
+}
+
+.special-11{
+  background-image: url('assets/images/11-kysymys.png');
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-position: center center;
+  border-top: white;
+  
+  pointer-events: none;
+  background-color: white;
+
+}
+
+.special-12{
+  background-image: url('assets/images/12-kysymys.png');
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-position: center center;
+  border-top: white;
+  
+  pointer-events: none;
+  background-color: white;
+
+}
+
+.special-13{
+  background-image: url('assets/images/13-kysymys.png');
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-position: center center;
+  
+  
+  pointer-events: none;
+  background-color: white;
+
+}
