@@ -30,13 +30,13 @@ export default function CrosswordGrid() {
             <div className="div grid-item" id="cell-20"></div>
             <div className="div grid-item" id="cell-21"></div>
             <div className="div grid-item" id="cell-22"></div>
-            <div className="div grid-item" id="cell-23"></div>
+            <div className="div grid-item" id="cell-23"><span className="static-number">1</span></div>
             <div className="div grid-item" id="cell-24"></div>
             <div className="grid-item special-2" data-special="true"></div>
             <div className="div grid-item" id="cell-26"></div>
             <div className="div grid-item" id="cell-27"></div>
             <div className="div grid-item" id="cell-28"></div>
-            <div className="div grid-item" id="cell-29"></div>
+            <div className="div grid-item" id="cell-29"><span className="static-number">2</span></div>
             <div className="div grid-item" id="cell-30"></div>
             <div className="div grid-item" id="cell-31"></div>
             <div className="div grid-item" id="cell-32"></div>
@@ -49,7 +49,7 @@ export default function CrosswordGrid() {
             <div className="div grid-item" id="cell-39"></div>
             <div className="div grid-item" id="cell-40"></div>
             <div className="div grid-item" id="cell-41"></div>
-            <div className="div grid-item" id="cell-42"></div>
+            <div className="div grid-item" id="cell-42"><span className="static-number">3</span></div>
             <div className="div grid-item" id="cell-43"></div>
             <div className="div grid-item" id="cell-44"></div>
             <div className="grid-item special-3" data-special="true"></div>
@@ -77,7 +77,7 @@ export default function CrosswordGrid() {
             <div className="div grid-item" id="cell-67"></div>
             <div className="div grid-item" id="cell-68"></div>
             <div className="div grid-item" id="cell-69"></div>
-            <div className="div grid-item" id="cell-70"></div>
+            <div className="div grid-item" id="cell-70"><span className="static-number">4</span></div>
             <div className="div grid-item" id="cell-71"></div>
             <div className="div grid-item" id="cell-72"></div>
             <div className="div grid-item" id="cell-73"></div>
@@ -100,7 +100,7 @@ export default function CrosswordGrid() {
             <div className="div grid-item" id="cell-90"></div>
             <div className="div grid-item" id="cell-91"></div>
             <div className="div grid-item" id="cell-92"></div>
-            <div className="div grid-item" id="cell-93"></div>
+            <div className="div grid-item" id="cell-93"><span className="static-number">5</span></div>
             <div className="div grid-item" id="cell-94"></div>
             <div className="div grid-item" id="cell-95"></div>
             <div className="div grid-item" id="cell-96"></div>
@@ -114,7 +114,7 @@ export default function CrosswordGrid() {
             <div className="div grid-item" id="cell-104"></div>
             <div className="grid-item special-13" data-special="true"></div>
             <div className="div grid-item" id="cell-106"></div>
-            <div className="div grid-item" id="cell-107"></div>
+            <div className="div grid-item" id="cell-107"><span className="static-number">6</span></div>
             <div className="div grid-item" id="cell-108"></div>
             <div className="div grid-item" id="cell-109"></div>
             <div className="div grid-item" id="cell-110"></div>

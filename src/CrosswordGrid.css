@@ -186,3 +186,13 @@
   background-color: white;
 
 }
+
+.static-number {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  font-size: 0.7em;
+  color: #333;
+  pointer-events: none;
+  font-weight: 800;
+}
