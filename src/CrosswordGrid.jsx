@@ -77,43 +77,36 @@ function CrosswordGrid() {
     const isPartOfSelectedVector = (item, selectedItemId, gridVectors, selectionMode) => {
         if (!selectedItemId || item.itemId === selectedItemId) return false;
         
-        // Determine the row and column of the clicked and current items
         const selectedRow = Math.ceil(selectedItemId / 10);
         const selectedCol = selectedItemId % 10 || 10;
         const itemRow = Math.ceil(item.itemId / 10);
         const itemCol = item.itemId % 10 || 10;
     
-        // Horizontal vector selection
-        if (selectedRow === itemRow) {
-            // Find the direction (left or right of the special item)
-            const direction = (itemCol > selectedCol) ? 1 : -1;
+        // Check if the current item is in the same row or column as the selected item
+        const isInSameRow = selectedRow === itemRow;
+        const isInSameColumn = selectedCol === itemCol;
     
+        // Horizontal vector selection
+        if (selectionMode === 'horizontal' && isInSameRow) {
+            const direction = (itemCol > selectedCol) ? 1 : -1;
             for (let i = selectedItemId; i !== item.itemId; i += direction) {
                 if (gridVectors[i - 1].isSpecial) return false;
             }
-    
             return true;
         }
         
-    
         // Vertical vector selection
-        if (selectedCol === itemCol) {
-            // Find the direction (above or below the special item)
+        if (selectionMode === 'vertical' && isInSameColumn) {
             const direction = (itemRow > selectedRow) ? 10 : -10;
-    
             for (let i = selectedItemId; i !== item.itemId; i += direction) {
                 if (i <= 0 || i > 110) return false; // Boundary check
                 if (gridVectors[i - 1].isSpecial) return false;
             }
-
-    
             return true;
         }
         
-    
         return false;
-        
-    }
+    };
 
     return (
         <div className="canvas">
