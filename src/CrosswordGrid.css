@@ -24,7 +24,11 @@
   position: relative; /* Position added here */
 }
 
-.grid-item.highlight {
+.selected-item {
+  background-color: darkblue;
+}
+
+.selected-vector {
   background-color: lightblue;
 }
 
