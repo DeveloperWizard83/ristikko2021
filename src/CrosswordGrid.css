@@ -24,12 +24,12 @@
   position: relative; /* Position added here */
 }
 
+.grid-item.highlight {
+  background-color: lightblue;
+}
+
 .canvas {
   position: relative;
- 
-  
-  
-
 }
 .special-1{
   background-image: url('assets/images/1-kysymys.png');
@@ -72,7 +72,7 @@
   background-repeat: no-repeat;
   background-size: 90%;
   background-position: center center;
-  
+  border-right: white;
   
   pointer-events: none;
   background-color: white;
@@ -84,7 +84,7 @@
   background-repeat: no-repeat;
   background-size: 90%;
   background-position: center center;
-  
+  border-left: white;
   
   pointer-events: none;
   background-color: white;
@@ -196,3 +196,4 @@
   pointer-events: none;
   font-weight: 800;
 }
+
