@@ -59,14 +59,23 @@ function CrosswordGrid() {
     const [lastClickedItem, setLastClickedItem] = useState(null);
     const [selectionMode, setSelectionMode] = useState('horizontal');
     const gridContentRef = useRef({}); // Initialize gridContentRef
+    const [letterUpdated, setLetterUpdated] = useState(false);
 
     useEffect(() => {
+        
         // Load saved content or initialize an empty object
         const savedContent = window.localStorage.getItem('gridContent');
         gridContentRef.current = savedContent ? JSON.parse(savedContent) : {};
 
         setGridVectors(createGridVectors());
     }, []);
+    useEffect(() => {
+        if (letterUpdated) {
+            let step = /^[a-zA-ZÖÄÅöäå]$/.test(letterUpdated.key) ? 1 : -1;
+            moveGridItemFocus(step);
+            setLetterUpdated(false); // Reset the flag after moving focus
+        }
+    }, [letterUpdated]);
 
     const handleClick = (itemId) => {
         // Toggle selection mode if the same item is clicked consecutively
@@ -78,29 +87,51 @@ function CrosswordGrid() {
         setSelectedItemId(itemId);
         setLastClickedItem(itemId);
     };
+    const moveGridItemFocus = (step) => {
+        if (!selectedItemId) return;
+
+        let index = selectedItemId - 1; // Adjusting because itemId starts from 1
+        let nextIndex = index + step * (selectionMode === 'horizontal' ? 1 : 10);
+        let row = Math.floor(nextIndex / 10);
+        let col = nextIndex % 10;
+
+        // Check bounds for horizontal and vertical movement
+        if ((selectionMode === 'horizontal' && (col < 0 || col >= 10)) ||
+            (selectionMode === 'vertical' && (row < 0 || row >= 11))) {
+            return;
+        }
+
+        // Adjusting nextIndex to match itemId
+        nextIndex = nextIndex + 1;
+        if (nextIndex < 1 || nextIndex > 110) return; // Boundary check for the grid
+
+        let nextItem = gridVectors[nextIndex - 1];
+        if (!nextItem || nextItem.isSpecial) {
+            return; // If there is no next item or it's a special item, do nothing
+        }
+
+        setSelectedItemId(nextIndex); // Update the selected item state
+    };
 
     const handleKeyPress = (itemId, event) => {
-        console.log(itemId, event.key);
-        // Ensure that the event is only handled for the selected grid item
-        if (!selectedItemId || itemId !== selectedItemId) return;
-    
-        // Check if the key pressed is a valid letter (A-Ö, a-ö)
-        if (/^[a-zA-ZÖÄÅöäå]$/.test(event.key)) {
-            // Update the content with the pressed key
-            const updatedContent = { ...gridContentRef.current, [itemId]: event.key.toUpperCase() };
+        /*...*/
+        if (/^[a-zA-ZÖÄÅöäå]$/.test(event.key) || event.key === 'Delete' || event.key === 'Backspace') {
+            // Move the focus to the next grid item before updating the content
+            let step = /^[a-zA-ZÖÄÅöäå]$/.test(event.key) ? 1 : -1;
+            moveGridItemFocus(step);
+            // Then update the content for the current item
+            const updatedContent = {
+                ...gridContentRef.current,
+                [selectedItemId]: /^[a-zA-ZÖÄÅöäå]$/.test(event.key) ? event.key.toUpperCase() : '',
+            };
             gridContentRef.current = updatedContent;
             window.localStorage.setItem('gridContent', JSON.stringify(updatedContent));
-            
-        } else if (event.key === 'Delete' || event.key === 'Backspace') {
-            // Handle delete or backspace key by removing the letter
-            const updatedContent = { ...gridContentRef.current, [itemId]: '' };
-            gridContentRef.current = updatedContent;
-            window.localStorage.setItem('gridContent', JSON.stringify(updatedContent));
+            // Trigger a re-render to update the UI
+            setGridVectors(createGridVectors());
         }
-    
-        // Trigger a re-render to update the UI
-        setGridVectors(createGridVectors());
     };
+
+    
     // Function to check if an item is part of the selected vector
     const isPartOfSelectedVector = (item, selectedItemId, gridVectors, selectionMode) => {
         if (!selectedItemId || item.itemId === selectedItemId) return false;
