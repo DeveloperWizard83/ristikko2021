@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect, useRef } from 'react';
 import './CrosswordGrid.css';
 
 
@@ -54,35 +54,19 @@ function createGridVectors() {
 }
 
 function CrosswordGrid() {
-       const [gridVectors, setGridVectors] = useState([]);
-    const [gridContent, setGridContent] = useState(Array(110).fill("")); // Assuming 110 grid items
+    const [gridVectors, setGridVectors] = useState([]);
     const [selectedItemId, setSelectedItemId] = useState(null);
     const [lastClickedItem, setLastClickedItem] = useState(null);
     const [selectionMode, setSelectionMode] = useState('horizontal');
+    const gridContentRef = useRef({}); // Initialize gridContentRef
 
     useEffect(() => {
+        // Load saved content or initialize an empty object
+        const savedContent = window.localStorage.getItem('gridContent');
+        gridContentRef.current = savedContent ? JSON.parse(savedContent) : {};
+
         setGridVectors(createGridVectors());
-        // Attach keydown event listener
-        const handleKeyDown = (e) => {
-            if (selectedItemId && /^[a-zA-Z]$/.test(e.key)) {
-                const updatedGridContent = [...gridContent];
-                updatedGridContent[selectedItemId - 1] = e.key.toUpperCase();
-                setGridContent(updatedGridContent);
-
-                // Determine the next selected item
-                let nextItemId = selectedItemId;
-                if (selectionMode === 'horizontal') {
-                    nextItemId = (nextItemId % 10 === 0) ? nextItemId - 9 : nextItemId + 1;
-                } else {
-                    nextItemId = (nextItemId + 10 > gridVectors.length) ? nextItemId - (gridVectors.length - 10) : nextItemId + 10;
-                }
-                setSelectedItemId(nextItemId);
-            }
-        };
-
-        window.addEventListener('keydown', handleKeyDown);
-        return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [selectedItemId, selectionMode, gridContent]);
+    }, []);
 
     const handleClick = (itemId) => {
         // Toggle selection mode if the same item is clicked consecutively
@@ -93,6 +77,29 @@ function CrosswordGrid() {
         }
         setSelectedItemId(itemId);
         setLastClickedItem(itemId);
+    };
+
+    const handleKeyPress = (itemId, event) => {
+        console.log(itemId, event.key);
+        // Ensure that the event is only handled for the selected grid item
+        if (!selectedItemId || itemId !== selectedItemId) return;
+    
+        // Check if the key pressed is a valid letter (A-Ö, a-ö)
+        if (/^[a-zA-ZÖÄÅöäå]$/.test(event.key)) {
+            // Update the content with the pressed key
+            const updatedContent = { ...gridContentRef.current, [itemId]: event.key.toUpperCase() };
+            gridContentRef.current = updatedContent;
+            window.localStorage.setItem('gridContent', JSON.stringify(updatedContent));
+            
+        } else if (event.key === 'Delete' || event.key === 'Backspace') {
+            // Handle delete or backspace key by removing the letter
+            const updatedContent = { ...gridContentRef.current, [itemId]: '' };
+            gridContentRef.current = updatedContent;
+            window.localStorage.setItem('gridContent', JSON.stringify(updatedContent));
+        }
+    
+        // Trigger a re-render to update the UI
+        setGridVectors(createGridVectors());
     };
     // Function to check if an item is part of the selected vector
     const isPartOfSelectedVector = (item, selectedItemId, gridVectors, selectionMode) => {
@@ -137,15 +144,20 @@ function CrosswordGrid() {
                     const staticNumber = staticNumberMapping[item.itemId];
                     const isSelectedItem = item.itemId === selectedItemId;
                     const isVectorItem = isPartOfSelectedVector(item, selectedItemId, gridVectors, selectionMode);
+                    const letter = gridContentRef.current[item.itemId] || ''; // Get the letter from gridContentRef
 
                     return (
                         <div
                             key={item.itemId}
+                            onKeyPress={(event) => handleKeyPress(item.itemId, event)}
+                            tabIndex={isVectorItem ? 0 : -1}
+                            onKeyDown={isVectorItem ? (e) => handleKeyPress(item.itemId, e) : null}
                             className={`grid-item ${specialClass} ${isSelectedItem ? 'selected-item' : ''} ${isVectorItem ? 'selected-vector' : ''}`}
                             onClick={() => handleClick(item.itemId)}
                             id={`cell-${item.itemId}`}
                         >
                             {staticNumber && <span className="static-number">{staticNumber}</span>}
+                            <span className="letter">{letter}</span> {/* Display the letter */}
                         </div>
                     );
                 })}

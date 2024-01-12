@@ -24,6 +24,7 @@
   position: relative; /* Position added here */
 }
 
+
 .selected-item {
   background-color: darkblue;
 }
