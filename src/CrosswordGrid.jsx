@@ -54,14 +54,35 @@ function createGridVectors() {
 }
 
 function CrosswordGrid() {
-    const [gridVectors, setGridVectors] = useState([]);
+       const [gridVectors, setGridVectors] = useState([]);
+    const [gridContent, setGridContent] = useState(Array(110).fill("")); // Assuming 110 grid items
     const [selectedItemId, setSelectedItemId] = useState(null);
     const [lastClickedItem, setLastClickedItem] = useState(null);
     const [selectionMode, setSelectionMode] = useState('horizontal');
 
     useEffect(() => {
         setGridVectors(createGridVectors());
-    }, []);
+        // Attach keydown event listener
+        const handleKeyDown = (e) => {
+            if (selectedItemId && /^[a-zA-Z]$/.test(e.key)) {
+                const updatedGridContent = [...gridContent];
+                updatedGridContent[selectedItemId - 1] = e.key.toUpperCase();
+                setGridContent(updatedGridContent);
+
+                // Determine the next selected item
+                let nextItemId = selectedItemId;
+                if (selectionMode === 'horizontal') {
+                    nextItemId = (nextItemId % 10 === 0) ? nextItemId - 9 : nextItemId + 1;
+                } else {
+                    nextItemId = (nextItemId + 10 > gridVectors.length) ? nextItemId - (gridVectors.length - 10) : nextItemId + 10;
+                }
+                setSelectedItemId(nextItemId);
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [selectedItemId, selectionMode, gridContent]);
 
     const handleClick = (itemId) => {
         // Toggle selection mode if the same item is clicked consecutively
