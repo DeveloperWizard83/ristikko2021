@@ -89,28 +89,30 @@ function CrosswordGrid() {
     };
     const moveGridItemFocus = (step) => {
         if (!selectedItemId) return;
-
+    
         let index = selectedItemId - 1; // Adjusting because itemId starts from 1
         let nextIndex = index + step * (selectionMode === 'horizontal' ? 1 : 10);
         let row = Math.floor(nextIndex / 10);
         let col = nextIndex % 10;
-
-        // Check bounds for horizontal and vertical movement
-        if ((selectionMode === 'horizontal' && (col < 0 || col >= 10)) ||
-            (selectionMode === 'vertical' && (row < 0 || row >= 11))) {
+    
+        // Check if the next item is in the same row/column
+        if ((selectionMode === 'horizontal' && Math.floor(index / 10) !== row) ||
+            (selectionMode === 'vertical' && index % 10 !== col)) {
             return;
         }
-
-        // Adjusting nextIndex to match itemId
-        nextIndex = nextIndex + 1;
-        if (nextIndex < 1 || nextIndex > 110) return; // Boundary check for the grid
-
-        let nextItem = gridVectors[nextIndex - 1];
+    
+        // Check bounds for horizontal and vertical movement
+        if ((selectionMode === 'horizontal' && (col < 0 || col > 9)) ||
+            (selectionMode === 'vertical' && (row < 0 || row > 11))) {
+            return;
+        }
+    
+        let nextItem = gridVectors[nextIndex];
         if (!nextItem || nextItem.isSpecial) {
             return; // If there is no next item or it's a special item, do nothing
         }
-
-        setSelectedItemId(nextIndex); // Update the selected item state
+    
+        setSelectedItemId(nextIndex + 1); // Update the selected item state
     };
 
     const handleKeyPress = (itemId, event) => {
