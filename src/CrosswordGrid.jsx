@@ -128,6 +128,17 @@ function CrosswordGrid() {
             updatedContent[selectedItemId] = '';
             gridContentRef.current = updatedContent;
             setGridVectors(createGridVectors());
+    
+            // Determine the next focus position based on the current selection mode
+            let newSelectedItemId = selectedItemId;
+            if (selectionMode === 'horizontal') {
+                newSelectedItemId = selectedItemId > 1 ? selectedItemId - 1 : 1;
+            } else if (selectionMode === 'vertical') {
+                // Move up one row if possible
+                newSelectedItemId = selectedItemId > 10 ? selectedItemId - 10 : selectedItemId;
+            }
+    
+            setSelectedItemId(newSelectedItemId);
         } else if (/^[a-zA-ZÖÄÅöäå]$/.test(event.key)) {
             updatedContent[selectedItemId] = event.key.toUpperCase();
             gridContentRef.current = updatedContent;
