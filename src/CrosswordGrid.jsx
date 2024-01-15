@@ -86,6 +86,10 @@ function CrosswordGrid() {
         }
         setSelectedItemId(itemId);
         setLastClickedItem(itemId);
+        const gridItemNode = document.getElementById(`cell-${itemId}`);
+    if (gridItemNode) {
+        gridItemNode.focus();
+    }
     };
     const moveGridItemFocus = (step) => {
         if (!selectedItemId) return;
@@ -115,22 +119,23 @@ function CrosswordGrid() {
         setSelectedItemId(nextIndex + 1); // Update the selected item state
     };
 
-    const handleKeyPress = (itemId, event) => {
-        /*...*/
-        if (/^[a-zA-ZÖÄÅöäå]$/.test(event.key) || event.key === 'Delete' || event.key === 'Backspace') {
-            // Move the focus to the next grid item before updating the content
-            let step = /^[a-zA-ZÖÄÅöäå]$/.test(event.key) ? 1 : -1;
-            moveGridItemFocus(step);
-            // Then update the content for the current item
-            const updatedContent = {
-                ...gridContentRef.current,
-                [selectedItemId]: /^[a-zA-ZÖÄÅöäå]$/.test(event.key) ? event.key.toUpperCase() : '',
-            };
+    const handleKeyPress = (event) => {
+        if (!selectedItemId) return;
+    
+        let updatedContent = { ...gridContentRef.current };
+    
+        if (event.key === 'Delete' || event.key === 'Backspace') {
+            updatedContent[selectedItemId] = '';
             gridContentRef.current = updatedContent;
-            window.localStorage.setItem('gridContent', JSON.stringify(updatedContent));
-            // Trigger a re-render to update the UI
             setGridVectors(createGridVectors());
+        } else if (/^[a-zA-ZÖÄÅöäå]$/.test(event.key)) {
+            updatedContent[selectedItemId] = event.key.toUpperCase();
+            gridContentRef.current = updatedContent;
+            setGridVectors(createGridVectors());
+            moveGridItemFocus(1);
         }
+    
+        window.localStorage.setItem('gridContent', JSON.stringify(updatedContent));
     };
 
     
@@ -181,13 +186,12 @@ function CrosswordGrid() {
 
                     return (
                         <div
-                            key={item.itemId}
-                            onKeyPress={(event) => handleKeyPress(item.itemId, event)}
-                            tabIndex={isVectorItem ? 0 : -1}
-                            onKeyDown={isVectorItem ? (e) => handleKeyPress(item.itemId, e) : null}
-                            className={`grid-item ${specialClass} ${isSelectedItem ? 'selected-item' : ''} ${isVectorItem ? 'selected-vector' : ''}`}
-                            onClick={() => handleClick(item.itemId)}
-                            id={`cell-${item.itemId}`}
+                        key={item.itemId}
+                        tabIndex={isVectorItem ? 0 : -1}
+                        onKeyDown={(e) => handleKeyPress(e)}
+                        className={`grid-item ${specialClass} ${isSelectedItem ? 'selected-item' : ''} ${isVectorItem ? 'selected-vector' : ''}`}
+                        onClick={() => handleClick(item.itemId)}
+                        id={`cell-${item.itemId}`}
                         >
                             {staticNumber && <span className="static-number">{staticNumber}</span>}
                             <span className="letter">{letter}</span> {/* Display the letter */}
