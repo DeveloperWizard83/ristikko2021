@@ -1,0 +1,10 @@
+.custom-keyboard {
+    display: none;
+}
+
+@media (max-width: 600px) { /* Adjust the width as per your requirements */
+    .custom-keyboard {
+        display: flex;
+        /* Add more styles to arrange the keys as needed */
+    }
+}

@@ -1,6 +1,6 @@
 import React, { useState,useEffect, useRef } from 'react';
 import './CrosswordGrid.css';
-
+import CustomKeyboard from './CustomKeyboard';
 
 const specialClassMapping = {
     15: 'special-1',
@@ -118,6 +118,23 @@ function CrosswordGrid() {
     
         setSelectedItemId(nextIndex + 1); // Update the selected item state
     };
+    const handleCustomKeyPress = (key) => {
+        if (!selectedItemId) return;
+
+        let updatedContent = { ...gridContentRef.current };
+
+        if (key === 'Poista kirjain') { // Handle delete key
+            updatedContent[selectedItemId] = '';
+            moveGridItemFocus(-1);
+        } else { // Handle letter keys
+            updatedContent[selectedItemId] = key;
+            moveGridItemFocus(1);
+        }
+
+        gridContentRef.current = updatedContent;
+        setGridVectors(createGridVectors());
+        window.localStorage.setItem('gridContent', JSON.stringify(updatedContent));
+    };
 
     const handleKeyPress = (event) => {
         if (!selectedItemId) return;
@@ -142,6 +159,7 @@ function CrosswordGrid() {
         } else if (/^[a-zA-ZÖÄÅöäå]$/.test(event.key)) {
             updatedContent[selectedItemId] = event.key.toUpperCase();
             gridContentRef.current = updatedContent;
+            
             setGridVectors(createGridVectors());
             moveGridItemFocus(1);
         }
@@ -194,15 +212,15 @@ function CrosswordGrid() {
                     const isSelectedItem = item.itemId === selectedItemId;
                     const isVectorItem = isPartOfSelectedVector(item, selectedItemId, gridVectors, selectionMode);
                     const letter = gridContentRef.current[item.itemId] || ''; // Get the letter from gridContentRef
-
+    
                     return (
                         <div
-                        key={item.itemId}
-                        tabIndex={isVectorItem ? 0 : -1}
-                        onKeyDown={(e) => handleKeyPress(e)}
-                        className={`grid-item ${specialClass} ${isSelectedItem ? 'selected-item' : ''} ${isVectorItem ? 'selected-vector' : ''}`}
-                        onClick={() => handleClick(item.itemId)}
-                        id={`cell-${item.itemId}`}
+                            key={item.itemId}
+                            tabIndex={isVectorItem ? 0 : -1}
+                            onKeyDown={(e) => handleKeyPress(e)}
+                            className={`grid-item ${specialClass} ${isSelectedItem ? 'selected-item' : ''} ${isVectorItem ? 'selected-vector' : ''}`}
+                            onClick={() => handleClick(item.itemId)}
+                            id={`cell-${item.itemId}`}
                         >
                             {staticNumber && <span className="static-number">{staticNumber}</span>}
                             <span className="letter">{letter}</span> {/* Display the letter */}
@@ -210,6 +228,7 @@ function CrosswordGrid() {
                     );
                 })}
             </div>
+            <CustomKeyboard onKeyPress={handleCustomKeyPress} />
         </div>
     );
 }
