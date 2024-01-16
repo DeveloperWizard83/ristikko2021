@@ -1,10 +1,16 @@
 .custom-keyboard {
-    display: none;
+    display: none
+   
 }
 
-@media (max-width: 600px) { /* Adjust the width as per your requirements */
+@media (max-width: 900px) {
     .custom-keyboard {
-        display: flex;
-        /* Add more styles to arrange the keys as needed */
+        display: grid;
+        grid-template-columns: repeat(11, 1fr); /* 11 columns */
+        grid-auto-rows: minmax(30px, auto); /* Minimum row height */
+        /* Space between keys */
+        padding: 5px; /* Optional padding around the keyboard */
+        position: sticky;
+        z-index: 1000;
     }
 }

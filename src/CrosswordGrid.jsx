@@ -123,7 +123,7 @@ function CrosswordGrid() {
 
         let updatedContent = { ...gridContentRef.current };
 
-        if (key === 'Poista kirjain') { // Handle delete key
+        if (key === '<-') { // Handle delete key
             updatedContent[selectedItemId] = '';
             moveGridItemFocus(-1);
         } else { // Handle letter keys
