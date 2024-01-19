@@ -3,21 +3,35 @@
    
 }
 
-@media (max-width: 900px) {
+@media (max-width: 800px) {
+
+    .canvas {
+        margin-left: 500px;
+        margin-right: 250px;
+        position: relative;
+        
+    }
+
     .custom-keyboard {
         display: grid;
-        grid-template-columns: repeat(11, 1fr); /* 11 columns */
-        grid-template-rows: repeat(4, 50px); /* Here you can define the number of rows and their height */
-        gap: 3px; /* Space between rows and columns */
-        padding: 3px 10px; /* Optional padding around the keyboard */
-        position: sticky;
-        bottom: 0; /* Stick to the bottom of the viewport */
-        z-index: 1000;
-        margin-left: 10px;
+        grid-template-columns: repeat(8, 1fr); /* Adjust columns as needed */
+        gap: 3px;
+        padding: 3px;
+        width: 100%; /* Full width of the viewport */
+        box-sizing: border-box;
+        position: fixed; /* Fixed to the viewport */
+        bottom: 0; /* Stuck to the bottom */
+        left: 0; /* Align to the left side */
+        background: #FFF; /* Background color */
+        z-index: 1000; /* Above other content */
+        justify-content: center; /* Center the keys if necessary */
     }
+
     .custom-keyboard button {
-        height: 50px; /* Set the button height */
-        width: 100%; /* Full width of the grid column */
+        height: 50px; /* Set button height */
         padding: 0 5px;
+        /* additional button styling */
     }
+   
 }
+

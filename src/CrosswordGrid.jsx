@@ -2,6 +2,7 @@ import React, { useState,useEffect, useRef } from 'react';
 import './CrosswordGrid.css';
 import CustomKeyboard from './CustomKeyboard';
 
+
 const specialClassMapping = {
     15: 'special-1',
     25: 'special-2',
@@ -60,6 +61,9 @@ function CrosswordGrid() {
     const [selectionMode, setSelectionMode] = useState('horizontal');
     const gridContentRef = useRef({}); // Initialize gridContentRef
     const [letterUpdated, setLetterUpdated] = useState(false);
+    const [zoomLevel, setZoomLevel] = useState(1); // State to keep track of zoom level
+    const touchStartRef = useRef({});
+    
 
     useEffect(() => {
         
@@ -77,6 +81,31 @@ function CrosswordGrid() {
         }
     }, [letterUpdated]);
 
+   
+
+    const handleTouchStart = (e) => {
+        if (e.touches.length === 2) {
+            const touch1 = e.touches[0];
+            const touch2 = e.touches[1];
+            const distance = Math.sqrt((touch1.pageX - touch2.pageX) ** 2 + (touch1.pageY - touch2.pageY) ** 2);
+            touchStartRef.current = { touch1, touch2, distance };
+        }
+    };
+    const handleTouchMove = (e) => {
+        if (e.touches.length === 2) {
+            const touch1 = e.touches[0];
+            const touch2 = e.touches[1];
+            const newDistance = Math.sqrt((touch1.pageX - touch2.pageX) ** 2 + (touch1.pageY - touch2.pageY) ** 2);
+            const scale = newDistance / touchStartRef.current.distance;
+
+            setZoomLevel(zoom => Math.max(1, zoom * scale)); // Update zoom level
+
+            touchStartRef.current = { touch1, touch2, distance: newDistance };
+            e.preventDefault(); // Prevent default touch action (scroll/zoom)
+        }
+    };
+
+
     const handleClick = (itemId) => {
         // Toggle selection mode if the same item is clicked consecutively
         if (lastClickedItem === itemId) {
@@ -91,6 +120,8 @@ function CrosswordGrid() {
         gridItemNode.focus();
     }
     };
+    
+
     const moveGridItemFocus = (step) => {
         if (!selectedItemId) return;
     
@@ -204,8 +235,9 @@ function CrosswordGrid() {
     };
 
     return (
-        <div className="canvas">
-            <div className="grid-container">
+        <div className="canvas" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
+            <div className="grid-container" style={{ transform: `scale(${zoomLevel})` }}>
+            
                 {gridVectors.map((item) => {
                     const specialClass = item.isSpecial ? specialClassMapping[item.itemId] : '';
                     const staticNumber = staticNumberMapping[item.itemId];
@@ -214,9 +246,12 @@ function CrosswordGrid() {
                     const letter = gridContentRef.current[item.itemId] || ''; // Get the letter from gridContentRef
     
                     return (
+                        
                         <div
+
                             key={item.itemId}
                             tabIndex={isVectorItem ? 0 : -1}
+                            
                             onKeyDown={(e) => handleKeyPress(e)}
                             className={`grid-item ${specialClass} ${isSelectedItem ? 'selected-item' : ''} ${isVectorItem ? 'selected-vector' : ''}`}
                             onClick={() => handleClick(item.itemId)}
@@ -227,8 +262,10 @@ function CrosswordGrid() {
                         </div>
                     );
                 })}
+                
             </div>
-            <CustomKeyboard onKeyPress={handleCustomKeyPress} />
+            <CustomKeyboard   onKeyPress={handleCustomKeyPress}
+      />
         </div>
     );
 }
