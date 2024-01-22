@@ -1,6 +1,6 @@
 import React, { useState,useEffect, useRef } from 'react';
 import './CrosswordGrid.css';
-import CustomKeyboard from './CustomKeyboard';
+
 
 
 const specialClassMapping = {
@@ -264,8 +264,8 @@ function CrosswordGrid() {
                 })}
                 
             </div>
-            <CustomKeyboard   onKeyPress={handleCustomKeyPress}
-      />
+            
+      
         </div>
     );
 }
