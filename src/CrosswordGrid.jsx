@@ -149,23 +149,7 @@ function CrosswordGrid() {
     
         setSelectedItemId(nextIndex + 1); // Update the selected item state
     };
-    const handleCustomKeyPress = (key) => {
-        if (!selectedItemId) return;
-
-        let updatedContent = { ...gridContentRef.current };
-
-        if (key === '<-') { // Handle delete key
-            updatedContent[selectedItemId] = '';
-            moveGridItemFocus(-1);
-        } else { // Handle letter keys
-            updatedContent[selectedItemId] = key;
-            moveGridItemFocus(1);
-        }
-
-        gridContentRef.current = updatedContent;
-        setGridVectors(createGridVectors());
-        window.localStorage.setItem('gridContent', JSON.stringify(updatedContent));
-    };
+ 
 
     const handleKeyPress = (event) => {
         if (!selectedItemId) return;
