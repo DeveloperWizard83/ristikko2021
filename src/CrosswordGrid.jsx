@@ -64,7 +64,7 @@ function CrosswordGrid() {
     const [zoomLevel, setZoomLevel] = useState(1); // State to keep track of zoom level
     const touchStartRef = useRef({})
     const invisibleInputRef = useRef(null);;
-    
+    const prevValueRef = useRef(' ');
 
     useEffect(() => {
         // Load saved content or initialize an empty object
@@ -86,22 +86,23 @@ function CrosswordGrid() {
     }, [letterUpdated]);
 
     const handleInvisibleInputChange = (e) => {
-        const value = e.target.value.trim();
-     
-        const lastChar = value[value.length - 1]; // Get the last character entered
-
-        if (/^[a-zA-ZÖÄÅöäå]$/.test(lastChar)) {
-            // Handle letter input
-            updateGridWithLetter(lastChar.toUpperCase());
-            moveGridItemFocus(1);
-        } else if (value === '') {
-            // Handle deletion
+        const currentValue = e.target.value;
+        // Detecting deletion: if the current value is just a space (or empty, depending on your reset logic),
+        // and the previous value was also a space (indicating the last action was not character input)
+        if (currentValue.trim() === '' && prevValueRef.current === ' ') {
             deleteGridLetter();
             moveGridItemFocus(-1);
+        } else {
+            const lastChar = currentValue.trim().slice(-1);
+            if (/^[a-zA-ZÖÄÅöäå]$/.test(lastChar)) {
+                updateGridWithLetter(lastChar.toUpperCase());
+                moveGridItemFocus(1);
+            }
         }
 
         // Reset the invisible input's value to a single space to allow continuous input
         e.target.value = ' ';
+        prevValueRef.current = ' '; // Update the previous value
     };
     const updateGridWithLetter = (letter) => {
         if (!selectedItemId) return;
