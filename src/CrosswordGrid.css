@@ -1,6 +1,6 @@
 .canvas {
   position: relative;
-  
+  overflow: hidden; /* Add this line */
 }
 
 .background{
@@ -39,7 +39,16 @@
   cursor: pointer;
   position: relative; /* Position added here */
 }
-
+.invisible-input {
+  position: fixed; /* Fixed position to keep it out of the document flow */
+  top: 0; /* Place it at the top of the page */
+  left: 0; /* Place it at the start of the page */
+  opacity: 0;
+  height: 1px; /* Minimal height to prevent any layout impact */
+  width: 1px; /* Minimal width to prevent any layout impact */
+  z-index: -1; /* Place it behind other content */
+  pointer-events: none; /* Prevent it from capturing clicks */
+}
 
 .selected-item {
   background-color: #6aa7cc;

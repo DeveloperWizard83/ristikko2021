@@ -270,14 +270,13 @@ function CrosswordGrid() {
 
     return (
         <div className="canvas background" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
-            <input
-                ref={invisibleInputRef}
-                className="invisible-input"
-                onChange={handleInvisibleInputChange}
-                value=" " // Initialize with a space to ensure deletion can be detected
-                autoFocus
-                style={{ position: 'absolute', opacity: 0, height: 0, width: 0 }}
-            />
+           <input
+  ref={invisibleInputRef}
+  className="invisible-input"
+  onChange={handleInvisibleInputChange}
+  value=" " // Initialize with a space to ensure deletion can be detected
+  autoFocus
+/>
             <div className="grid-container" style={{ transform: `scale(${zoomLevel})` }}>
                 {gridVectors.map((item) => {
                     const specialClass = item.isSpecial ? specialClassMapping[item.itemId] : '';
