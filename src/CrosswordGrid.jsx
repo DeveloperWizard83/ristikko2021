@@ -62,16 +62,20 @@ function CrosswordGrid() {
     const gridContentRef = useRef({}); // Initialize gridContentRef
     const [letterUpdated, setLetterUpdated] = useState(false);
     const [zoomLevel, setZoomLevel] = useState(1); // State to keep track of zoom level
-    const touchStartRef = useRef({});
+    const touchStartRef = useRef({})
+    const invisibleInputRef = useRef(null);;
     
 
     useEffect(() => {
-        
         // Load saved content or initialize an empty object
         const savedContent = window.localStorage.getItem('gridContent');
         gridContentRef.current = savedContent ? JSON.parse(savedContent) : {};
 
         setGridVectors(createGridVectors());
+        // Attempt to focus the invisible input safely
+        if (invisibleInputRef.current) {
+            invisibleInputRef.current.focus();
+        }
     }, []);
     useEffect(() => {
         if (letterUpdated) {
@@ -81,7 +85,39 @@ function CrosswordGrid() {
         }
     }, [letterUpdated]);
 
-   
+    const handleInvisibleInputChange = (e) => {
+        const value = e.target.value.trim();
+     
+        const lastChar = value[value.length - 1]; // Get the last character entered
+
+        if (/^[a-zA-ZÖÄÅöäå]$/.test(lastChar)) {
+            // Handle letter input
+            updateGridWithLetter(lastChar.toUpperCase());
+            moveGridItemFocus(1);
+        } else if (value === '') {
+            // Handle deletion
+            deleteGridLetter();
+            moveGridItemFocus(-1);
+        }
+
+        // Reset the invisible input's value to a single space to allow continuous input
+        e.target.value = ' ';
+    };
+    const updateGridWithLetter = (letter) => {
+        if (!selectedItemId) return;
+        const updatedContent = { ...gridContentRef.current, [selectedItemId]: letter };
+        gridContentRef.current = updatedContent;
+        setGridVectors(createGridVectors());
+        window.localStorage.setItem('gridContent', JSON.stringify(updatedContent));
+    };
+
+    const deleteGridLetter = () => {
+        if (!selectedItemId) return;
+        const updatedContent = { ...gridContentRef.current, [selectedItemId]: '' };
+        gridContentRef.current = updatedContent;
+        setGridVectors(createGridVectors());
+        window.localStorage.setItem('gridContent', JSON.stringify(updatedContent));
+    };
 
     const handleTouchStart = (e) => {
         if (e.touches.length === 2) {
@@ -118,6 +154,9 @@ function CrosswordGrid() {
         const gridItemNode = document.getElementById(`cell-${itemId}`);
     if (gridItemNode) {
         gridItemNode.focus();
+    }
+    if (invisibleInputRef.current) {
+        invisibleInputRef.current.focus();
     }
     };
     
@@ -220,8 +259,15 @@ function CrosswordGrid() {
 
     return (
         <div className="canvas" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
+            <input
+                ref={invisibleInputRef}
+                className="invisible-input"
+                onChange={handleInvisibleInputChange}
+                value=" " // Initialize with a space to ensure deletion can be detected
+                autoFocus
+                style={{ position: 'absolute', opacity: 0, height: 0, width: 0 }}
+            />
             <div className="grid-container" style={{ transform: `scale(${zoomLevel})` }}>
-            
                 {gridVectors.map((item) => {
                     const specialClass = item.isSpecial ? specialClassMapping[item.itemId] : '';
                     const staticNumber = staticNumberMapping[item.itemId];
@@ -230,13 +276,8 @@ function CrosswordGrid() {
                     const letter = gridContentRef.current[item.itemId] || ''; // Get the letter from gridContentRef
     
                     return (
-                        
                         <div
-
-                            key={item.itemId}
-                            tabIndex={isVectorItem ? 0 : -1}
-                            
-                            onKeyDown={(e) => handleKeyPress(e)}
+                            key={item.itemId} // Correctly set the unique key here
                             className={`grid-item ${specialClass} ${isSelectedItem ? 'selected-item' : ''} ${isVectorItem ? 'selected-vector' : ''}`}
                             onClick={() => handleClick(item.itemId)}
                             id={`cell-${item.itemId}`}
@@ -246,10 +287,7 @@ function CrosswordGrid() {
                         </div>
                     );
                 })}
-                
             </div>
-            
-      
         </div>
     );
 }
