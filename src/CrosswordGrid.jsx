@@ -144,7 +144,12 @@ function CrosswordGrid() {
 
 
     const handleClick = (itemId) => {
+        event.preventDefault();
+        event.stopPropagation();
         // Toggle selection mode if the same item is clicked consecutively
+        if (invisibleInputRef.current) {
+            invisibleInputRef.current.focus({ preventScroll: true });
+        }
         if (lastClickedItem === itemId) {
             setSelectionMode(prevMode => prevMode === 'horizontal' ? 'vertical' : 'horizontal');
         } else {
@@ -192,6 +197,11 @@ function CrosswordGrid() {
  
 
     const handleKeyPress = (event) => {
+
+        
+        if (invisibleInputRef.current) {
+            invisibleInputRef.current.focus({ preventScroll: true });
+        }
         if (!selectedItemId) return;
     
         let updatedContent = { ...gridContentRef.current };
@@ -259,7 +269,7 @@ function CrosswordGrid() {
     };
 
     return (
-        <div className="canvas" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
+        <div className="canvas background" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
             <input
                 ref={invisibleInputRef}
                 className="invisible-input"
