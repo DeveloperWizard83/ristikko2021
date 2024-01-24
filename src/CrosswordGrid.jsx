@@ -288,6 +288,7 @@ function CrosswordGrid() {
                     return (
                         <div
                             key={item.itemId} // Correctly set the unique key here
+                            data-cy={`grid-item-${item.itemId}`}
                             className={`grid-item ${specialClass} ${isSelectedItem ? 'selected-item' : ''} ${isVectorItem ? 'selected-vector' : ''}`}
                             onClick={() => handleClick(item.itemId)}
                             id={`cell-${item.itemId}`}
