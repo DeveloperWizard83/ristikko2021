@@ -2,6 +2,7 @@
   position: relative;
   overflow: hidden; /* Add this line */
   margin-top: 300px;
+  
 }
 
 .background{
@@ -20,6 +21,7 @@
   position: absolute;
   margin-top: 435px; /* Adjust the value as needed */
   left: 19%;
+ 
   
 
 
@@ -77,6 +79,14 @@
 }
 .crossword-flex-container {
   overflow: auto;
+}
+
+@media screen and (max-width: 800px) {
+  .grid-container {
+    margin-bottom: 1000px;
+    margin-right: 1000px;
+  }
+  
 }
 
 .special-1{
