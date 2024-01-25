@@ -42,7 +42,7 @@ const ButtonContainer = () => {
       logging: true,
       allowTaint: false,
       width: window.innerWidth,
-      height: window.innerHeight + 300,
+      height: window.innerHeight + 900,
       windowHeight: document.documentElement.offsetHeight
     };
   
@@ -80,9 +80,9 @@ const ButtonContainer = () => {
   };
   return (
     <div className="button-container">
-      <button id="helpButton" className="help-button" onClick={handleHelpClick}>Ohjeet</button>
+      <button id="helpButton" className="help-button non-printable" onClick={handleHelpClick}>Ohjeet</button>
       {/* Add the download button */}
-      <button id="downloadButton" className="download-button" onClick={handleDownloadClick}>Lataa sivu</button>
+      <button id="downloadButton" className="download-button non-printable" onClick={handleDownloadClick}>Lataa sivu</button>
       {/* ... other buttons */}
       {/* Help Modal */}
       {isHelpModalVisible && (
