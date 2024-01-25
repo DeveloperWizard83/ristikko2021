@@ -1,6 +1,7 @@
 .canvas {
   position: relative;
   overflow: hidden; /* Add this line */
+  margin-top: 300px;
 }
 
 .background{
@@ -17,7 +18,7 @@
   grid-template-columns: repeat(10, 1.64cm);
   grid-template-rows: repeat(11, 1.64cm);
   position: absolute;
-  margin-top: 426px; /* Adjust the value as needed */
+  margin-top: 435px; /* Adjust the value as needed */
   left: 19%;
 
 
