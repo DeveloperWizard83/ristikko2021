@@ -20,6 +20,7 @@
   position: absolute;
   margin-top: 435px; /* Adjust the value as needed */
   left: 19%;
+  
 
 
 
@@ -60,7 +61,23 @@
 }
 
 
+.crossword-page {
+  display: flex;
+  justify-content: center; /* Centers the children horizontally */
+  align-items: start; /* Aligns children to the start of the cross axis */
+  padding: 20px;
+  flex-wrap: wrap; /* Allows children to wrap onto multiple lines */
+}
 
+.crossword-flex-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 20px;
+}
+.crossword-flex-container {
+  overflow: auto;
+}
 
 .special-1{
   background-image: url('assets/images/1-kysymys.png');

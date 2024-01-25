@@ -1,5 +1,6 @@
 import React, { useState,useEffect, useRef } from 'react';
 import './CrosswordGrid.css';
+import ButtonContainer from './Buttons';
 
 
 
@@ -269,38 +270,43 @@ function CrosswordGrid() {
     };
 
     return (
-        <div className="canvas background" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
-           <input
-  ref={invisibleInputRef}
-  className="invisible-input"
-  onChange={handleInvisibleInputChange}
-  value=" " // Initialize with a space to ensure deletion can be detected
-  autoFocus
-/>
-            <div className="grid-container" style={{ transform: `scale(${zoomLevel})` }}>
+        <div className="crossword-page">
+          <div className="crossword-flex-container">
+            <div className="canvas background" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
+              <input
+                ref={invisibleInputRef}
+                className="invisible-input"
+                onChange={handleInvisibleInputChange}
+                value=" " // Initialize with a space to ensure deletion can be detected
+                autoFocus
+              />
+              <div className="grid-container" style={{ transform: `scale(${zoomLevel})` }}>
                 {gridVectors.map((item) => {
-                    const specialClass = item.isSpecial ? specialClassMapping[item.itemId] : '';
-                    const staticNumber = staticNumberMapping[item.itemId];
-                    const isSelectedItem = item.itemId === selectedItemId;
-                    const isVectorItem = isPartOfSelectedVector(item, selectedItemId, gridVectors, selectionMode);
-                    const letter = gridContentRef.current[item.itemId] || ''; // Get the letter from gridContentRef
-    
-                    return (
-                        <div
-                            key={item.itemId} // Correctly set the unique key here
-                            data-cy={`grid-item-${item.itemId}`}
-                            className={`grid-item ${specialClass} ${isSelectedItem ? 'selected-item' : ''} ${isVectorItem ? 'selected-vector' : ''}`}
-                            onClick={() => handleClick(item.itemId)}
-                            id={`cell-${item.itemId}`}
-                        >
-                            {staticNumber && <span className="static-number">{staticNumber}</span>}
-                            <span className="letter">{letter}</span> {/* Display the letter */}
-                        </div>
-                    );
+                  const specialClass = item.isSpecial ? specialClassMapping[item.itemId] : '';
+                  const staticNumber = staticNumberMapping[item.itemId];
+                  const isSelectedItem = item.itemId === selectedItemId;
+                  const isVectorItem = isPartOfSelectedVector(item, selectedItemId, gridVectors, selectionMode);
+                  const letter = gridContentRef.current[item.itemId] || ''; // Get the letter from gridContentRef
+      
+                  return (
+                    <div
+                      key={item.itemId}
+                      data-cy={`grid-item-${item.itemId}`}
+                      className={`grid-item ${specialClass} ${isSelectedItem ? 'selected-item' : ''} ${isVectorItem ? 'selected-vector' : ''}`}
+                      onClick={() => handleClick(item.itemId)}
+                      id={`cell-${item.itemId}`}
+                    >
+                      {staticNumber && <span className="static-number">{staticNumber}</span>}
+                      <span className="letter">{letter}</span> {/* Display the letter */}
+                    </div>
+                  );
                 })}
+              </div>
             </div>
+            <ButtonContainer />
+          </div>
         </div>
-    );
+      );
 }
 
 export default CrosswordGrid;
