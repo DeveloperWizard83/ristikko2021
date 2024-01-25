@@ -1,0 +1,37 @@
+.custom-keyboard {
+    display: none
+   
+}
+
+@media (max-width: 800px) {
+
+    .canvas {
+        margin-left: 500px;
+        margin-right: 250px;
+        position: relative;
+        
+    }
+
+    .custom-keyboard {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr); /* Adjust columns as needed */
+        gap: 3px;
+        padding: 3px;
+        width: 500px; /* Full width of the viewport */
+        box-sizing: border-box;
+        position: absolute; /* Take it out of document flow */
+        bottom: 0; /* Stuck to the bottom */
+        left: 0; /* Align to the left side */
+        background: #FFF; /* Background color */
+        z-index: 1000; /* Above other content */
+        justify-content: center; /* Center the keys if necessary */
+    }
+
+    .custom-keyboard button {
+        height: 50px; /* Set button height */
+        padding: 0 5px;
+        /* additional button styling */
+    }
+   
+}
+

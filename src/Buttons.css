@@ -6,10 +6,18 @@
     flex-direction: column; /* Stack the buttons vertically */
     justify-content: flex-start;
     margin-top: 100px;
-   margin-left: 500px;
+   margin-left: 430px;
     position: absolute;
 
     /* Add more styles if needed */
+}
+
+@media screen and (max-width: 500px) {
+    .button-container{
+      
+        margin-left: 800px;
+        width: 150px;
+      }
 }
 
 

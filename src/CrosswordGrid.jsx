@@ -1,6 +1,7 @@
 import React, { useState,useEffect, useRef } from 'react';
 import './CrosswordGrid.css';
 import ButtonContainer from './Buttons';
+import CustomKeyboard from './CustomKeyboard';
 
 
 
@@ -142,7 +143,39 @@ function CrosswordGrid() {
             e.preventDefault(); // Prevent default touch action (scroll/zoom)
         }
     };
-
+    const onKeyPress = (key) => {
+        if (key === 'delete') {
+            // Handle delete action
+            deleteGridLetter();
+            moveGridItemFocus(-1); // Move focus back on delete
+          } else {
+            // Handle letter input
+            updateGridWithLetter(key);
+            moveGridItemFocus(1); // Move focus forward on adding a letter
+          }
+      };
+      useEffect(() => {
+        const handleKeyDown = (event) => {
+            // Handle the Backspace separately as before
+            if (event.key === 'Backspace') {
+                deleteGridLetter();
+                moveGridItemFocus(-1);
+            } else if (/^[a-zA-ZÖÄÅöäå]$/.test(event.key)) {
+                // Convert the key to uppercase before updating
+                const uppercaseKey = event.key.toUpperCase();
+                updateGridWithLetter(uppercaseKey);
+                moveGridItemFocus(1);
+            }
+        };
+    
+        // Attach the event listener for desktop keydown events
+        document.addEventListener('keydown', handleKeyDown);
+    
+        // Ensure to clean up the event listener
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [selectedItemId, selectionMode]);
 
     const handleClick = (itemId) => {
         event.preventDefault();
@@ -273,13 +306,14 @@ function CrosswordGrid() {
         <div className="crossword-page">
           <div className="crossword-flex-container">
             <div className="canvas background" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
-              <input
-                ref={invisibleInputRef}
-                className="invisible-input"
-                onChange={handleInvisibleInputChange}
-                value=" " // Initialize with a space to ensure deletion can be detected
-                autoFocus
-              />
+            <input
+  ref={invisibleInputRef}
+  className="invisible-input"
+  onChange={handleInvisibleInputChange}
+  value=" " // Initialize with a space to ensure deletion can be detected
+  autoFocus
+  readOnly // Add this attribute to make the input readonly
+/>
               <div className="grid-container" style={{ transform: `scale(${zoomLevel})` }}>
                 {gridVectors.map((item) => {
                   const specialClass = item.isSpecial ? specialClassMapping[item.itemId] : '';
@@ -302,6 +336,7 @@ function CrosswordGrid() {
                   );
                 })}
               </div>
+              <CustomKeyboard onKeyPress={onKeyPress} />
             </div>
             <ButtonContainer />
           </div>

@@ -89,17 +89,10 @@ margin-top: -280px;
 @media screen and (max-width: 500px) {
   .grid-container {
     
-    grid-template-columns: repeat(10, 1.9cm);
-    grid-template-rows: repeat(11, 1.9cm);
+    grid-template-columns: repeat(10, 1.7cm);
+    grid-template-rows: repeat(11, 1.7cm);
     top: 5%;
-   
-   
-    
-  
-  
-  
-    
-  }
+    }
   
 }
 
