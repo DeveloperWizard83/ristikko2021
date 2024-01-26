@@ -2,7 +2,7 @@
   position: absolute;
   overflow: hidden; /* Add this line */
 left: 16%;
-margin-top: -280px; 
+margin-top: -279px; 
   
   
 }
@@ -26,6 +26,7 @@ margin-top: -280px;
   margin-top: 435px; /* Adjust the value as needed */
   left: 19%;
   top: 7.9%;
+  
 
  
   
@@ -87,16 +88,11 @@ margin-top: -280px;
   overflow: auto;
 }
 
-@media screen and (max-width: 500px) {
-  .grid-container {
-    
-    grid-template-columns: repeat(10, 1.7cm);
-    grid-template-rows: repeat(11, 1.7cm);
-    top: 5%;
-    }
-  
-}
 
+
+ 
+
+  
 .special-1{
   background-image: url('assets/images/1-kysymys.png');
   background-repeat: no-repeat;

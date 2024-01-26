@@ -19,7 +19,7 @@
         padding: 3px;
         width: 800px; 
         box-sizing: border-box;
-        margin-bottom:600px ;
+        margin-bottom:700px ;
         position: fixed; /* Take it out of document flow */
         bottom: 0; /* Stuck to the bottom */
         left: 0; /* Align to the left side */
@@ -27,7 +27,7 @@
         z-index: 1000; /* Above other content */
         justify-content: center; /* Center the keys if necessary */
         background: rgba(0,0,0,0.5);
-        margin-left: 180px;
+        margin-left: 200px;
         
     }
 
