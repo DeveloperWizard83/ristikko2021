@@ -15,7 +15,7 @@
     .custom-keyboard {
         display: grid;
         grid-template-columns: repeat(8, 1fr); /* Adjust columns as needed */
-        gap: 3px;
+        gap: 4px;
         padding: 3px;
         width: 800px; 
         box-sizing: border-box;
@@ -32,9 +32,9 @@
     }
 
     .custom-keyboard button {
-        height: 50px; /* Set button height */
+        height: 56px; /* Set button height */
         padding: 0 5px;
-        background: rgba(0, 0, 0, 0); 
+        background: white;
         font-size: large;
         /* additional button styling */
     }
