@@ -303,7 +303,7 @@ function CrosswordGrid() {
     };
 
     return (
-        <div className="crossword-page">
+        <div className="crossword-page style={{ transform: `scale(${zoomLevel})` }}">
           <div className="crossword-flex-container">
             <div className="canvas background" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
             <input
@@ -314,7 +314,7 @@ function CrosswordGrid() {
   autoFocus
   readOnly // Add this attribute to make the input readonly
 />
-              <div className="grid-container" style={{ transform: `scale(${zoomLevel})` }}>
+              <div className="grid-container" >
                 {gridVectors.map((item) => {
                   const specialClass = item.isSpecial ? specialClassMapping[item.itemId] : '';
                   const staticNumber = staticNumberMapping[item.itemId];
