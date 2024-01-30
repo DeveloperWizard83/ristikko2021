@@ -30,7 +30,8 @@
     .custom-keyboard button {
         height: 56px; /* Set button height */
         padding: 0 5px;
-        background: white;
+        background: #494949; /* Dark grey background */
+        color: white; 
         font-size: large;
         /* additional button styling */
     }
