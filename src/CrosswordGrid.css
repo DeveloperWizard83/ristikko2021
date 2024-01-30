@@ -27,13 +27,6 @@ margin-top: -279px;
   left: 19%;
   top: 9%;
   
-
- 
-  
-
-
-
-  
 }
 
 
@@ -89,7 +82,13 @@ margin-top: -279px;
 }
 
 
-
+@media (max-height: 910px) {
+  .grid-container {
+    grid-template-rows: repeat(11, 71.8px); /* Example to adjust row height based on viewport height */
+    grid-template-columns: repeat(10, 71.5px);
+    top: 4.8%;
+  }
+}
  
 
   
