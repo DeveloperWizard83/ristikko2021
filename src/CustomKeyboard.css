@@ -3,14 +3,10 @@
    
 }
 
-@media (max-width: 500px) {
 
-    .grid-container {
-        display: grid;
-        grid-template-columns: repeat(10, 1.9cm);
-        grid-template-rows: repeat(11, 1.9cm);
-        top: 4.5%;
-    }
+@media (min-width: 421px) and (max-width: 500px) {
+
+    
 
     .custom-keyboard {
         display: grid;
@@ -40,4 +36,4 @@
     }
    
 }
-
+  

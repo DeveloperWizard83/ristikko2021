@@ -20,12 +20,12 @@ margin-top: -279px;
 }
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(10, 2.1cm);
-  grid-template-rows: repeat(11, 2.1cm);
+  grid-template-columns: repeat(10, 82.6px);
+  grid-template-rows: repeat(11, 83px);
   position: absolute;
   margin-top: 435px; /* Adjust the value as needed */
   left: 19%;
-  top: 7.9%;
+  top: 9%;
   
 
  
