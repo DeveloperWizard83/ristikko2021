@@ -104,6 +104,17 @@ margin-top: -279px;
     top: 4.5%;
   }
 }
+
+@media (max-height: 600px) {
+  .canvas{
+    margin-top: -200px;
+  }
+  .grid-container {
+    grid-template-rows: repeat(11, 54px); /* Example to adjust row height based on viewport height */
+    grid-template-columns: repeat(10, 53.6px);
+    top: -6.5%;
+  }
+}
   
 .special-1{
   background-image: url('assets/images/1-kysymys.png');
