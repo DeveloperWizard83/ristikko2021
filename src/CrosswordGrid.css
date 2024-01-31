@@ -83,39 +83,6 @@
 }
 
 
-@media (max-height: 910px) {
-  .grid-container {
-    grid-template-rows: repeat(11, 71.8px); /* Example to adjust row height based on viewport height */
-    grid-template-columns: repeat(10, 71.5px);
-    top: 4.5%;
-  }
-}
- 
-@media (max-height: 800px) {
-  .grid-container {
-    grid-template-rows: repeat(11, 69.2px); /* Example to adjust row height based on viewport height */
-    grid-template-columns: repeat(10, 69px);
-    top: 3.4%;
-  }
-}
-@media (max-height: 750px) {
-  .grid-container {
-    grid-template-rows: repeat(11, 72px); /* Example to adjust row height based on viewport height */
-    grid-template-columns: repeat(10, 71.5px);
-    top: 4.5%;
-  }
-}
-
-@media (max-height: 600px) {
-  .canvas{
-    margin-top: -200px;
-  }
-  .grid-container {
-    grid-template-rows: repeat(11, 54px); /* Example to adjust row height based on viewport height */
-    grid-template-columns: repeat(10, 53.6px);
-    top: -6.5%;
-  }
-}
   
 .special-1{
   background-image: url('assets/images/1-kysymys.png');
