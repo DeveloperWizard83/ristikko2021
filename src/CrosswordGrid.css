@@ -1,34 +1,33 @@
 .canvas {
   position: absolute;
-  overflow: hidden; /* Add this line */
-left: 16%;
-margin-top: -279px; 
-  
-  
+  overflow: hidden;
+  left: 16%; /* Percentage based on parent width */
+  top: 50%; /* Center vertically */
+  /* Shift up by half its own height */
+  /* Other styles... */
 }
 
-.background{
+.background {
+  position: absolute;
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -33%); /* Center the element */
+  height: 79.6vw; /* Height relative to viewport width */
+  width: 66.3vw; /* Width relative to viewport width */
   background-image: url('assets/images/tausta.png');
   background-repeat: no-repeat;
-  height: 168vh;
-  width: 140vh;
   background-size: cover;
-  top: 30%;
-  background-size: 100% calc(100% - 8px); 
- 
-  
+  /* Remove the duplicate background-size property */
 }
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(10, 82.6px);
-  grid-template-rows: repeat(11, 83px);
+  grid-template-columns: repeat(10, 4.27vw);
+  grid-template-rows: repeat(11, 4.42vw);
   position: absolute;
-  margin-top: 435px; /* Adjust the value as needed */
-  left: 19%;
-  top: 9%;
-  
+  top: calc(50% + 280px); /* Adjust 20px to whatever value you need to move it down */
+  left: calc(50% + 20px); /* Adjust 20px to whatever value you need to move it right */
+  transform: translate(-50%, -50%); /* This centers the grid based on its own size */
 }
-
 
 .grid-item {
   width: 100%;
@@ -99,7 +98,7 @@ margin-top: -279px;
 }
 @media (max-height: 750px) {
   .grid-container {
-    grid-template-rows: repeat(11, 71.8px); /* Example to adjust row height based on viewport height */
+    grid-template-rows: repeat(11, 72px); /* Example to adjust row height based on viewport height */
     grid-template-columns: repeat(10, 71.5px);
     top: 4.5%;
   }
