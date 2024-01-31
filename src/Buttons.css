@@ -1,24 +1,19 @@
 
 .button-container {
     /* Set the width or max-width if necessary */
-    width: 200px; /* or any appropriate width */
+    width: 10vw; /* or any appropriate width */
     display: flex;
     flex-direction: column; /* Stack the buttons vertically */
     justify-content: flex-start;
-    margin-top: 100px;
-   margin-left: 430px;
+    margin-left: 83%;
+    margin-top: 50%;
+  
     position: absolute;
 
     /* Add more styles if needed */
 }
 
-@media screen and (max-width: 500px) {
-    .button-container{
-      
-        margin-left: 800px;
-        width: 150px;
-      }
-}
+
 
 
 .modal {

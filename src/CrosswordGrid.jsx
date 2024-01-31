@@ -336,11 +336,15 @@ function CrosswordGrid() {
                   );
                 })}
               </div>
-              <CustomKeyboard onKeyPress={onKeyPress} />
-            </div>
-            <ButtonContainer />
-          </div>
-        </div>
+              <ButtonContainer />
+      </div>
+      {/* This is the new container for the custom keyboard. */}
+      {/* It should be outside and after your '.canvas' or grid container */}
+      <div className="custom-keyboard-container">
+        <CustomKeyboard onKeyPress={onKeyPress} />
+      </div>
+    </div>
+    </div>
       );
 }
 

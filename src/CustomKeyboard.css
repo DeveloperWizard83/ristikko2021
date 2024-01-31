@@ -1,40 +1,44 @@
-.custom-keyboard {
-    display: none
-   
+.custom-keyboard{
+    display: none;
 }
 
 
 @media (max-width: 1024px) {
 
-    
+    /* Add bottom padding to the crossword grid container equivalent to the keyboard's height plus some extra space */
+    .crossword-grid-container {
+        padding-bottom: 120px; /* Adjust this value based on the actual height of your keyboard */
+    }
+
+    .custom-keyboard-container {
+        display: flex;
+        justify-content: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1; /* Make sure this is not higher than the crossword grid's z-index */
+    }
 
     .custom-keyboard {
         display: grid;
-        grid-template-columns: repeat(8, 1fr); /* Adjust columns as needed */
-        gap: 4px;
-        padding: 3px;
-        width: 800px; 
+        grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+        gap: 1vw;
+        padding: 1vw;
+        max-width: 700px; /* Or whatever maximum width you prefer */
         box-sizing: border-box;
-        margin-bottom:700px ;
-        position: fixed; /* Take it out of document flow */
-        bottom: 0; /* Stuck to the bottom */
-        left: 0; /* Align to the left side */
-        background: #9b4d4df1; /* Background color */
-        z-index: 1000; /* Above other content */
-        justify-content: center; /* Center the keys if necessary */
         background: rgba(0,0,0,0.5);
-        margin-left: 200px;
-        
+        /* No need to set top, left, or bottom properties here as the container takes care of positioning */
     }
 
     .custom-keyboard button {
-        height: 56px; /* Set button height */
+        height: 56px; /* Ensure the height is enough for easy interaction */
+        max-width: 60px; /* Ensure the max-width fits the desired layout */
         padding: 0 5px;
-        background: #494949; /* Dark grey background */
-        color: white; 
+        background: #494949;
+        color: white;
         font-size: large;
+        border: none;
         /* additional button styling */
     }
-   
 }
-  
