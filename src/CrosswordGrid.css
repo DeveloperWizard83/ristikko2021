@@ -2,7 +2,9 @@
   position: absolute;
   overflow: hidden;
   left: 16%; /* Percentage based on parent width */
-  top: 50%; /* Center vertically */
+  top: 50%;
+  transform: translateY(-50%);
+   /* Center vertically */
   /* Shift up by half its own height */
   /* Other styles... */
 }
@@ -21,11 +23,11 @@
 }
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(10, 4.27vw);
+  grid-template-columns: repeat(10, 4.3vw);
   grid-template-rows: repeat(11, 4.42vw);
   position: absolute;
-  top: calc(50% + 280px); /* Adjust 20px to whatever value you need to move it down */
-  left: calc(50% + 20px); /* Adjust 20px to whatever value you need to move it right */
+  top: calc(50% + 14.6vw); /* Adjust 20px to whatever value you need to move it down */
+  left: calc(50% + 1vw); /* Adjust 20px to whatever value you need to move it right */
   transform: translate(-50%, -50%); /* This centers the grid based on its own size */
 }
 
