@@ -4,13 +4,15 @@
 @media (max-width: 1024px) {
     .custom-keyboard-container {
         display: flex;
-       
         position: fixed;
         bottom: 0;
+        left: 50%; /* Add this to start the container in the center */
+        transform: translateX(-50%); /* Add this to shift the container back to the center */
         justify-content: center;
-        
-     
+        width: 100%; /* Stretch the container across the width of the screen */
+        max-width: 600px; /* Set a max-width to prevent it from getting too wide */
         z-index: 1; /* Make sure this is not higher than the crossword grid's z-index */
+        /* ... other styles ... */
     }
 
     .custom-keyboard {
@@ -57,4 +59,81 @@
       .canvas {
         top: calc(30% + 3.6vw)
       }
+      
+    }
+
+    @media (max-width: 900px) {
+        .custom-keyboard-container {
+            display: flex;
+            position: fixed;
+            bottom: 0;
+            left: 50%; /* Add this to start the container in the center */
+            transform: translateX(-50%); /* Add this to shift the container back to the center */
+            justify-content: center;
+            width: 100%; /* Stretch the container across the width of the screen */
+            max-width: 600px; /* Set a max-width to prevent it from getting too wide */
+            z-index: 1; /* Make sure this is not higher than the crossword grid's z-index */
+            /* ... other styles ... */
+        }
+    
+        .custom-keyboard {
+            display: grid;
+            grid-template-columns: repeat(10, 3.3vw);
+            grid-template-rows: repeat(3, 4.42vw);
+           gap: 1px;
+           
+            
+            max-width: 600px; /* Or whatever maximum width you prefer */
+            opacity: 0.5;
+            background: rgba(0,0,0,0.5);
+            
+            
+            
+            
+            /* No need to set top, left, or bottom properties here as the container takes care of positioning */
+        }
+    
+   
+        .canvas {
+            top: calc(25% + 3.6vw)
+          }
+
+    }
+
+    @media (max-width: 400px) {
+        .custom-keyboard-container {
+            display: flex;
+            position: fixed;
+            bottom: 0;
+            left: 50%; /* Add this to start the container in the center */
+            transform: translateX(-50%); /* Add this to shift the container back to the center */
+            justify-content: center;
+            width: 100%; /* Stretch the container across the width of the screen */
+            max-width: 600px; /* Set a max-width to prevent it from getting too wide */
+            z-index: 1; /* Make sure this is not higher than the crossword grid's z-index */
+            /* ... other styles ... */
+        }
+    
+        .custom-keyboard {
+            display: grid;
+            grid-template-columns: repeat(10, 5.3vw);
+            grid-template-rows: repeat(3, 6.42vw);
+           gap: 1px;
+           
+            
+            max-width: 600px; /* Or whatever maximum width you prefer */
+            opacity: 0.5;
+            background: rgba(0,0,0,0.5);
+            
+            
+            
+            
+            /* No need to set top, left, or bottom properties here as the container takes care of positioning */
+        }
+    
+   
+        .canvas {
+            top: calc(50% + 3.6vw)
+          }
+
     }

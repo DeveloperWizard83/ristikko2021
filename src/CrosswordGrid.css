@@ -33,7 +33,7 @@
   height: 100%;
   background-color: white;
   border: 3px solid #000;
-  font-size: 38px;
+  font-size: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -264,6 +264,25 @@
   }
 }
 
+
+@media (max-width: 1024px) {
+
+  /* Add bottom padding to the crossword grid container equivalent to the keyboard's height plus some extra space */
+  
+ 
+  .grid-item {
+    
+    border: 1px solid #000;
+    font-size: 26px;
+   
+  }
+  .static-number {
+    font-size: 14px;
+    top: 1px;
+    left: 3px;
+    
+  }
+}
 @media screen and (max-width: 650px) {
   /* CSS rules for screens smaller than 768px */
   
