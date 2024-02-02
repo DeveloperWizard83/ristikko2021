@@ -72,7 +72,7 @@
             left: 50%; /* Add this to start the container in the center */
             transform: translateX(-50%); /* Add this to shift the container back to the center */
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             width: 100%; /* Stretch the container across the width of the screen */
             max-width: 600px; /* Set a max-width to prevent it from getting too wide */
             z-index: 1; /* Make sure this is not higher than the crossword grid's z-index */
@@ -99,6 +99,18 @@
    
         .canvas {
             top: calc(40% + 3.6vw)
+          }
+          .grid-item {
+    
+            border: 1px solid #000;
+            font-size: 18px;
+           
+          }
+          .static-number {
+            font-size: 9px;
+            top: 1px;
+            left: 2px;
+            
           }
 
     }
