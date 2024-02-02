@@ -1,44 +1,60 @@
 .custom-keyboard{
     display: none;
 }
-
-
 @media (max-width: 1024px) {
-
-    /* Add bottom padding to the crossword grid container equivalent to the keyboard's height plus some extra space */
-    .crossword-grid-container {
-        padding-bottom: 120px; /* Adjust this value based on the actual height of your keyboard */
-    }
-
     .custom-keyboard-container {
         display: flex;
-        justify-content: center;
+       
         position: fixed;
         bottom: 0;
-        left: 0;
-        right: 0;
+        justify-content: center;
+        
+     
         z-index: 1; /* Make sure this is not higher than the crossword grid's z-index */
     }
 
     .custom-keyboard {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
-        gap: 1vw;
-        padding: 1vw;
-        max-width: 700px; /* Or whatever maximum width you prefer */
-        box-sizing: border-box;
+        grid-template-columns: repeat(10, 3.3vw);
+        grid-template-rows: repeat(3, 3.42vw);
+       gap: 1px;
+       
+        
+        max-width: 600px; /* Or whatever maximum width you prefer */
+        opacity: 0.5;
         background: rgba(0,0,0,0.5);
+        
+        
+        
+        
         /* No need to set top, left, or bottom properties here as the container takes care of positioning */
     }
 
     .custom-keyboard button {
-        height: 56px; /* Ensure the height is enough for easy interaction */
-        max-width: 60px; /* Ensure the max-width fits the desired layout */
+        height: 36px; /* Ensure the height is enough for easy interaction */
+        max-width: 30px; /* Ensure the max-width fits the desired layout */
         padding: 0 5px;
         background: #494949;
         color: white;
         font-size: large;
         border: none;
         /* additional button styling */
+
+        
     }
-}
+    .grid-item {
+    
+        border: 1px solid #000;
+        font-size: 26px;
+       
+      }
+      .static-number {
+        font-size: 12px;
+        top: 1px;
+        left: 3px;
+        
+      }
+      .canvas {
+        top: calc(30% + 3.6vw)
+      }
+    }

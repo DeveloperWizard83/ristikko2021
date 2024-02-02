@@ -16,7 +16,7 @@ const CustomKeyboard = ({ onKeyPress }) => {
       {chars.map(char => (
         <button key={char} onClick={() => handleClick(char)}>{char}</button>
       ))}
-      <button onClick={() => handleClick('delete')}>Delete</button>
+      <button onClick={() => handleClick('delete')}>←</button>
     </div>
   );
 };
