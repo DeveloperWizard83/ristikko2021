@@ -265,7 +265,16 @@ function CrosswordGrid() {
     
         window.localStorage.setItem('gridContent', JSON.stringify(updatedContent));
     };
-
+    const clearAllLetters = () => {
+        const clearedContent = Object.keys(gridContentRef.current).reduce((acc, key) => {
+            acc[key] = ''; // Set each letter to an empty string
+            return acc;
+        }, {});
+    
+        gridContentRef.current = clearedContent;
+        window.localStorage.setItem('gridContent', JSON.stringify(clearedContent));
+        setGridVectors(createGridVectors()); // Re-render grid with cleared letters
+    };
     
     // Function to check if an item is part of the selected vector
     const isPartOfSelectedVector = (item, selectedItemId, gridVectors, selectionMode) => {
@@ -336,7 +345,7 @@ function CrosswordGrid() {
                   );
                 })}
               </div>
-              <ButtonContainer />
+              <ButtonContainer onEraseClick={clearAllLetters} />
       </div>
       {/* This is the new container for the custom keyboard. */}
       {/* It should be outside and after your '.canvas' or grid container */}

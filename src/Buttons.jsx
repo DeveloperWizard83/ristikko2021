@@ -3,7 +3,7 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import './Buttons.css'; // This imports the CSS styles
 
-const ButtonContainer = () => {
+const ButtonContainer = ({ onEraseClick }) => {
 
     const [isHelpModalVisible, setIsHelpModalVisible] = useState(false);
 
@@ -20,8 +20,10 @@ const ButtonContainer = () => {
   };
 
   const handleEraseClick = () => {
-    // Logic for erase crossword button
-  };
+    if (onEraseClick) {
+        onEraseClick(); // Call the function passed down from the parent component
+    }
+};
 
   const handleSendClick = () => {
     // Logic for send reply button
@@ -82,6 +84,7 @@ const ButtonContainer = () => {
     <div className="button-container">
       <button id="helpButton" className="help-button non-printable" onClick={handleHelpClick}>Ohjeet</button>
       {/* Add the download button */}
+      <button id="eraseButton" className="erase-button non-printable" onClick={handleEraseClick}>Tyhjennä Ristikko</button>
       <button id="downloadButton" className="download-button non-printable" onClick={handleDownloadClick}>Lataa sivu</button>
       {/* ... other buttons */}
       {/* Help Modal */}
