@@ -3,7 +3,7 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import './Buttons.css'; // This imports the CSS styles
 
-const ButtonContainer = ({ onEraseClick }) => {
+const ButtonContainer = ({ onEraseClick, gridContentRef }) => {
 
     const [isHelpModalVisible, setIsHelpModalVisible] = useState(false);
 
@@ -15,8 +15,22 @@ const ButtonContainer = ({ onEraseClick }) => {
       setIsHelpModalVisible(false); // Hide the help modal
     };
 
-  const handleCheckClick = () => {
-    // Logic for check crossword button
+    const handleCheckClick = () => {
+      // Assuming staticNumberMapping's order corresponds to the word "MITTAUS"
+      // and that gridContentRef.current holds the current letters keyed by itemId
+      const correctWord = "KOSTEA";
+      const letterPositions = [23, 29, 42, 70, 93, 107]; // Ids for "KOSTEA"
+      let formedWord = '';
+
+      for (let pos of letterPositions) {
+          formedWord += (gridContentRef.current[pos] || '');
+      }
+
+      if (formedWord.toUpperCase() === correctWord) {
+          alert("Hienoa, vastaus on oikein"); // Using alert for simplicity
+      } else {
+          alert("Väärin, yritä uudestaan");
+      }
   };
 
   const handleEraseClick = () => {
@@ -83,6 +97,7 @@ const ButtonContainer = ({ onEraseClick }) => {
   return (
     <div className="button-container">
       <button id="helpButton" className="help-button non-printable" onClick={handleHelpClick}>Ohjeet</button>
+      <button onClick={handleCheckClick}>Tarkista Sana</button>
       {/* Add the download button */}
       <button id="eraseButton" className="erase-button non-printable" onClick={handleEraseClick}>Tyhjennä Ristikko</button>
       <button id="downloadButton" className="download-button non-printable" onClick={handleDownloadClick}>Lataa sivu</button>
