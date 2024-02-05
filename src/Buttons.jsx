@@ -48,52 +48,48 @@ const ButtonContainer = ({ onEraseClick, gridContentRef }) => {
   };
 
   const handleDownloadClick = () => {
-    // Temporarily hide elements you don't want to capture
-    document.querySelectorAll('.non-printable').forEach(el => el.style.display = 'none');
-  
-    // Set options for html2canvas
-    const options = {
-      scale: 1,
-      useCORS: true,
-      logging: true,
-      allowTaint: false,
-      width: window.innerWidth,
-      height: window.innerHeight + 900,
-      windowHeight: document.documentElement.offsetHeight
+    // Temporarily adjust styles for capture
+    const originalStyles = {
+      overflow: document.querySelector('.canvas').style.overflow,
+      position: document.querySelector('.background').style.position,
+      transform: document.querySelector('.background').style.transform
     };
   
-    html2canvas(document.body, options).then(canvas => {
-      // Show elements back
-      document.querySelectorAll('.non-printable').forEach(el => el.style.display = '');
+    // Adjust styles for capture
+    document.querySelector('.canvas').style.overflow = 'visible';
+    document.querySelector('.background').style.position = 'static';
+    document.querySelector('.background').style.transform = 'none';
   
-      const imgData = canvas.toDataURL('image/png');
+    const crosswordContainerElement = document.querySelector('.canvas');
+  
+    // Use html2canvas to capture the crossword container
+    html2canvas(crosswordContainerElement, {
+      scale: 1,
+      logging: true,
+      onclone: (document) => {
+        // Modify cloned document styles here if necessary
+      }
+    }).then(capturedCanvas => {
+      // Restore original styles after capture
+      document.querySelector('.canvas').style.overflow = originalStyles.overflow;
+      document.querySelector('.background').style.position = originalStyles.position;
+      document.querySelector('.background').style.transform = originalStyles.transform;
+  
+      const imgData = capturedCanvas.toDataURL('image/png');
       const pdf = new jsPDF({
         orientation: 'p',
         unit: 'mm',
         format: 'a4',
       });
   
-      // Calculate the PDF width and height
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = pdf.internal.pageSize.getHeight();
-      const canvasAspectRatio = canvas.height / canvas.width;
-      const pdfAspectRatio = pdfHeight / pdfWidth;
-  
-      let finalPdfWidth, finalPdfHeight;
-  
-      // Adjust width and height to maintain the aspect ratio
-      if (canvasAspectRatio > pdfAspectRatio) {
-        finalPdfHeight = pdfHeight;
-        finalPdfWidth = pdfHeight / canvasAspectRatio;
-      } else {
-        finalPdfWidth = pdfWidth;
-        finalPdfHeight = canvasAspectRatio * pdfWidth;
-      }
-  
-      pdf.addImage(imgData, 'PNG', 0, 0, finalPdfWidth, finalPdfHeight);
+      // Add the captured canvas to the PDF
+      pdf.addImage(imgData, 'PNG', 0, 0, pdf.internal.pageSize.getWidth(), pdf.internal.pageSize.getHeight());
       pdf.save('download.pdf');
+    }).catch(error => {
+      console.error('Error generating PDF: ', error);
     });
   };
+  
   return (
     <div className="button-container">
       <button id="helpButton" className="help-button non-printable" onClick={handleHelpClick}>Ohjeet</button>
