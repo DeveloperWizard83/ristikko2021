@@ -345,7 +345,7 @@ function CrosswordGrid() {
                   );
                 })}
               </div>
-              <ButtonContainer onEraseClick={clearAllLetters} gridContentRef={gridContentRef} />
+              <ButtonContainer onEraseClick={clearAllLetters} gridContentRef={gridContentRef} selectedItemId={selectedItemId} />
       </div>
       {/* This is the new container for the custom keyboard. */}
       {/* It should be outside and after your '.canvas' or grid container */}
