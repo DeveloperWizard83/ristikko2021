@@ -87,8 +87,9 @@ const ButtonContainer = ({ onEraseClick, gridContentRef, selectedItemId}) => {
       }
     }
   
-    let correctnessPercentage = (correctCount / totalCount) * 100;
-    alert(`Your crossword is ${correctnessPercentage.toFixed(2)}% correct.`);
+    let correctnessPercentage = Math.round((correctCount / totalCount) * 100);
+alert(`Olet ratkaissut ristikosta ${correctnessPercentage} prosenttia.`);
+
   };
 
 
