@@ -1,7 +1,20 @@
 .custom-keyboard{
     display: none;
+
+    
 }
+
+
 @media (max-width: 1024px) {
+  .button-container {
+    position: absolute; /* or 'fixed' if you want it to stay in place on scroll */
+    right: 20px; /* Adjust as necessary for proper spacing */
+    top: 20px; /* Adjust to align with the top of the crossword grid */
+    width: auto; /* Allows the container to shrink-wrap the content */
+    max-width: 200px; /* Adjust the max-width as needed to prevent buttons from being too wide */
+    z-index: 2; /* Ensure it's above the grid if overlapping */
+    /* Remove margin-left */
+}
     .custom-keyboard-container {
         display: flex;
         position: fixed;
