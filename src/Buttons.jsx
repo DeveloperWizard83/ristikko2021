@@ -101,6 +101,9 @@ alert(`Olet ratkaissut ristikosta ${correctnessPercentage} prosenttia.`);
       position: document.querySelector('.background').style.position,
       transform: document.querySelector('.background').style.transform
     };
+    const buttonContainer = document.querySelector('.button-container');
+    const originalDisplay = buttonContainer.style.display;
+    buttonContainer.style.display = 'none'; // Hide buttons
   
     // Adjust styles for capture
     document.querySelector('.canvas').style.overflow = 'visible';
@@ -121,6 +124,7 @@ alert(`Olet ratkaissut ristikosta ${correctnessPercentage} prosenttia.`);
       document.querySelector('.canvas').style.overflow = originalStyles.overflow;
       document.querySelector('.background').style.position = originalStyles.position;
       document.querySelector('.background').style.transform = originalStyles.transform;
+      buttonContainer.style.display = originalDisplay;
   
       const imgData = capturedCanvas.toDataURL('image/png');
       const pdf = new jsPDF({
