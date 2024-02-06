@@ -78,6 +78,31 @@
     
 
     @media (max-width: 400px) {
+      .button-container {
+        position: fixed; 
+       top: 0;
+        height: auto; /* Auto height to contain the buttons */
+        width: 100vw; /* Full width to use the entire screen width */
+        z-index: 2; /* Ensure it's above the keyboard container */
+        background: rgba(0,0,0,0.5); /* Semi-transparent background */
+        padding: 10px 0; /* Add some padding at the top and bottom */
+        box-sizing: border-box; /* Include padding in the width calculation */
+        display: flex; /* Use flexbox for internal alignment */
+        flex-direction: row; /* Arrange flex items horizontally */
+        align-items: center; /* Center-align the flex items vertically */
+        justify-content: space-around; /* Distribute the items evenly with space around them */
+        overflow-x: auto; /* Allows horizontal scrolling if buttons overflow */
+        transform: translateY(-500%);
+      }
+    
+      .button-container button {
+        /* Adjust button styles to be smaller and fit within the container */
+        padding: 5px 10px; /* Reduced padding */
+        font-size: 12px; /* Smaller font size */
+        margin: 0 2px; /* Small margin to keep buttons from touching */
+        min-width: 0; /* Allow buttons to shrink */
+        flex: 0 0 auto; /* Do not grow, do not shrink, and base size on content */
+      }
         .custom-keyboard-container {
             display: flex;
             position: fixed;
