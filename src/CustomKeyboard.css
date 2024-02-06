@@ -19,7 +19,7 @@
         display: grid;
         grid-template-columns: repeat(10, 3.3vw);
         grid-template-rows: repeat(3, 3.42vw);
-       gap: 1px;
+       gap: 2px;
        
         
         max-width: 600px; /* Or whatever maximum width you prefer */
@@ -33,14 +33,14 @@
     }
 
     .custom-keyboard button {
-        height: 36px; /* Ensure the height is enough for easy interaction */
-        max-width: 30px; /* Ensure the max-width fits the desired layout */
-        padding: 0 5px;
-        background: #494949;
-        color: white;
-        font-size: large;
-        border: none;
-        /* additional button styling */
+      height: 36px; /* Ensure the height is enough for easy interaction */
+      max-width: 30px; /* Ensure the max-width fits the desired layout */
+      margin: 0; /* Remove margin to prevent extra spacing around buttons */
+      padding: 0 5px;
+       /* Set button background to slightly transparent white for contrast */
+      color: black;
+      font-size: large;
+      border: px solid #494949;
 
         
     }
@@ -74,7 +74,7 @@
             justify-content: center;
             margin-bottom: 25px;
             width: 100%; /* Stretch the container across the width of the screen */
-            max-width: 600px; /* Set a max-width to prevent it from getting too wide */
+            max-width: 750px; /* Set a max-width to prevent it from getting too wide */
             z-index: 1; /* Make sure this is not higher than the crossword grid's z-index */
             /* ... other styles ... */
         }
@@ -82,13 +82,14 @@
         .custom-keyboard {
             display: grid;
             grid-template-columns: repeat(10, 5.3vw);
-            grid-template-rows: repeat(3, 6.42vw);
-           gap: 1px;
+            grid-template-rows: repeat(3, 5.62vw);
+            gap: 6px; /* Increase the gap size for more separation */
+            
            
             
-            max-width: 600px; /* Or whatever maximum width you prefer */
-            opacity: 0.5;
-            background: rgba(0,0,0,0.5);
+            max-width: 750px; /* Or whatever maximum width you prefer */
+            
+            
             
             
             
