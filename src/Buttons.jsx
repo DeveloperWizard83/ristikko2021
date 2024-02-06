@@ -54,9 +54,10 @@ const ButtonContainer = ({ onEraseClick, gridContentRef, selectedItemId}) => {
     }
 };
 
-  const handleSendClick = () => {
-    // Logic for send reply button
-  };
+const handleSendClick = () => {
+  // Replace 'https://www.companywebsite.com/form' with the actual URL you want users to go to
+  // window.location.href = 'https://www.companywebsite.com/form';
+};
 
   const handleKirjainClick = () => {
     if (!selectedItemId) {
@@ -139,12 +140,13 @@ alert(`Olet ratkaissut ristikosta ${correctnessPercentage} prosenttia.`);
   return (
     <div className="button-container">
       <button id="helpButton" className="help-button non-printable" onClick={handleHelpClick}>Ohjeet</button>
-      <button onClick={handleCheckClick}>Tarkista Sana</button>
-      <button onClick={tarkistaRistikkoClick}>Tarkista ristikko</button>
+      <button className='check-word-button' onClick={handleCheckClick}>Tarkista ratkaisusana</button>
+      <button className='check-crossword-button' onClick={tarkistaRistikkoClick}>Tarkista ristikko</button>
       {/* Add the download button */}
-      <button onClick={handleKirjainClick}>Anna Kirjain</button>
+      <button className='give-letter-button' onClick={handleKirjainClick}>Anna Kirjain</button>
       <button id="eraseButton" className="erase-button non-printable" onClick={handleEraseClick}>Tyhjennä Ristikko</button>
       <button id="downloadButton" className="download-button non-printable" onClick={handleDownloadClick}>Lataa sivu</button>
+      <button onClick={handleSendClick} className="send-info-button">Lähetä tiedot</button>
       {/* ... other buttons */}
       {/* Help Modal */}
       {isHelpModalVisible && (
@@ -152,7 +154,7 @@ alert(`Olet ratkaissut ristikosta ${correctnessPercentage} prosenttia.`);
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <span className="close" onClick={handleCloseHelpModal}>&times;</span>
             <h2>Kirjoittaminen</h2>
-    <p>Valitse ruutu ja kirjoitussuunta ja voit aloittaa kirjoittamisen. Kirjoitussuuntaa voit vaihtaa painamalla valittua ruutua. Kirjaimia voi poistaa peruutus(backspace) näppäimellä. Jos ristikko näyttää oudolta, niin tarkista että selaimen zoom taso on 100% </p>
+    <p>Valitse ruutu ja kirjoitussuunta ja voit aloittaa kirjoittamisen. Kirjoitussuuntaa voit vaihtaa painamalla valittua ruutua. Kirjaimia voi poistaa peruutus(backspace) näppäimellä.</p>
     <h2>Ristikon tallennus</h2>
     <p>Ristikko tallentuu automaattisesti selaimen muistiin jokaisen muutoksen jälkeen. Kun ristikkoon palaa myöhemmin lataa se automaattisesti pelin siitä kohtaa johon se jäi. 
         Selaimen muistien tyhjennys voi hävittää kirjaimet ristikosta.
