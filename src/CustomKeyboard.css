@@ -3,7 +3,7 @@
 
     
 }
-@media (min-width: 1025px) and (max-width: 1919px) {
+@media (min-width: 1401px) and (max-width: 1919px) {
   .button-container {
     position: absolute; /* or 'fixed' if you want it to stay in place on scroll */
     right: 5px; /* Adjust as necessary for proper spacing */
@@ -13,10 +13,21 @@
     z-index: 2; /* Ensure it's above the grid if overlapping */
     /* Remove margin-left */
 }
-  /* Include any other component adjustments here */
+.static-number {
+  font-size: 19px;
+  top: 1px;
+  left: 3px;
+  
+}
+.grid-item {
+    
+  border: 2px solid #000;
+  font-size: 42px;
+ 
+}
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1400px) {
   .button-container {
     position: absolute; /* or 'fixed' if you want it to stay in place on scroll */
     right: 20px; /* Adjust as necessary for proper spacing */
@@ -25,6 +36,15 @@
     max-width: 200px; /* Adjust the max-width as needed to prevent buttons from being too wide */
     z-index: 2; /* Ensure it's above the grid if overlapping */
     /* Remove margin-left */
+}
+
+.button-container button {
+  /* Adjust button styles to be smaller and fit within the container */
+  padding: 5px 10px; /* Reduced padding */
+  font-size: 12px; /* Smaller font size */
+  margin: 0 2px; /* Small margin to keep buttons from touching */
+  min-width: 0; /* Allow buttons to shrink */
+  flex: 0 0 auto; /* Do not grow, do not shrink, and base size on content */
 }
 
 
