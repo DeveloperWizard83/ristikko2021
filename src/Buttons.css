@@ -1,20 +1,18 @@
 
+
 .button-container {
     /* Set the width or max-width if necessary */
     width: 10vw; /* or any appropriate width */
     display: flex;
     flex-direction: column; /* Stack the buttons vertically */
     justify-content: flex-start;
-    margin-left: 1430px;
+    margin-left: 1450px;
     margin-top: 50%;
   
     position: absolute;
-
+  
     /* Add more styles if needed */
-}
-
-
-
+  }
 
 .modal {
     position: fixed; /* Stay in place */
