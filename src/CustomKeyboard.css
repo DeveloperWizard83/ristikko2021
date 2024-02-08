@@ -86,7 +86,8 @@
        /* Set button background to slightly transparent white for contrast */
       color: black;
       font-size: large;
-      border: px solid #494949;
+    border: none;
+    background: #FFFFFF; /* Button background to white */
 
         
     }
@@ -163,7 +164,7 @@
             column-gap: 6px; /* Set gap between columns */
             row-gap: 6px; /* Set gap between rows */ /* Increase the gap size for more separation */
             
-           
+            
             
             max-width: 750px; /* Or whatever maximum width you prefer */
             
@@ -185,7 +186,7 @@
           font-size: large;
           text-align: center; /* Center text horizontally */
           line-height: 36px; /* Center text vertically */
-          border: none; /* Remove border or set to '1px solid #494949' if border is desired */
+         border: none;
           outline: none; /* Remove outline on focus */
       }
     
