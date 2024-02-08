@@ -211,8 +211,21 @@
 
     @media screen and (max-width: 1400px) and (orientation: landscape) {
       .canvas {
-        top: calc(40% + 6.6vw)
+        top: calc(50% + 6.6vw)
       }
-      
+      .button-container{
+
+        right: -5px;
+      }
+      .button-container button {
+        /* Adjust button styles to be smaller and fit within the container */
+        padding: 5px 10px; /* Reduced padding */
+        font-size: 8px; /* Smaller font size */
+        margin: 0 2px; /* Small margin to keep buttons from touching */
+        min-width: 0; /* Allow buttons to shrink */
+        flex: 0 0 auto; /* Do not grow, do not shrink, and base size on content */
+       margin-bottom: 2px;
+        border-radius: 5%;
+      }
 
     }
