@@ -2,7 +2,7 @@
 
 .button-container {
     /* Set the width or max-width if necessary */
-    width: 10vw; /* or any appropriate width */
+    width: 8vw; /* or any appropriate width */
     display: flex;
     flex-direction: column; /* Stack the buttons vertically */
     justify-content: flex-start;

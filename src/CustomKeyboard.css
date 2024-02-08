@@ -228,5 +228,18 @@
        margin-bottom: 2px;
         border-radius: 5%;
       }
+      .custom-keyboard-container {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 50%; /* Add this to start the container in the center */
+        transform: translateX(-50%); /* Add this to shift the container back to the center */
+        justify-content: center;
+        margin-bottom: 27px;
+        width: 100%; /* Stretch the container across the width of the screen */
+        max-width: 750px; /* Set a max-width to prevent it from getting too wide */
+        z-index: 1; /* Make sure this is not higher than the crossword grid's z-index */
+        /* ... other styles ... */
+    }
 
     }
