@@ -150,7 +150,7 @@
           align-items: center; /* Center-align the flex items vertically */
           justify-content: space-around; /* Distribute the items evenly with space around them */
           
-          transform: translateX(-13%);
+          
           max-width: 6vw;
           background: none;
         }
@@ -161,7 +161,7 @@
           font-size: 6px; /* Smaller font size */
           margin: 0 2px; /* Small margin to keep buttons from touching */
           min-width: 0; /* Allow buttons to shrink */
-         
+          flex: 0 0 auto; /* Do not grow, do not shrink, and base size on content */
          margin-bottom: 2px;
           border-radius: 5%;
         }
@@ -184,7 +184,7 @@
         align-items: center; /* Center-align the flex items vertically */
         justify-content: space-around; /* Distribute the items evenly with space around them */
         
-        transform: translateX(-13%);
+       
         
         background: none;
       }
