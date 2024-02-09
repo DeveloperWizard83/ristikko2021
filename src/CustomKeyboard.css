@@ -109,7 +109,64 @@
       
     }
 
-    
+    @media (min-width: 401px)and (max-width: 600px) {
+
+      .custom-keyboard-container {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 50%; /* Add this to start the container in the center */
+        transform: translateX(-50%); /* Add this to shift the container back to the center */
+        justify-content: center;
+        margin-bottom: 27px;
+        width: 100%; /* Stretch the container across the width of the screen */
+        max-width: 750px; /* Set a max-width to prevent it from getting too wide */
+        z-index: 1; /* Make sure this is not higher than the crossword grid's z-index */
+        /* ... other styles ... */
+    }
+
+    .custom-keyboard {
+        display: grid;
+        grid-template-columns: repeat(10, 5.3vw);
+        grid-template-rows: repeat(3, 7.62vw);
+        column-gap: 4px; /* Set gap between columns */
+        row-gap: 4px; /* Set gap between rows */ /* Increase the gap size for more separation */
+        
+        
+        
+        max-width: 700px; }
+        .button-container {
+          position: fixed; 
+         top: 0;
+          height: auto; /* Auto height to contain the buttons */
+          right: 7px;
+          width: 9vw; /* Full width to use the entire screen width */
+          z-index: 10; /* Ensure it's above the keyboard container */
+         
+          padding: 10px 0; /* Add some padding at the top and bottom */
+          box-sizing: border-box; /* Include padding in the width calculation */
+          display: flex; /* Use flexbox for internal alignment */
+          flex-direction: column; /* Arrange flex items horizontally */
+          align-items: center; /* Center-align the flex items vertically */
+          justify-content: space-around; /* Distribute the items evenly with space around them */
+          
+          transform: translateX(-13%);
+          max-width: 6vw;
+          background: none;
+        }
+      
+        .button-container button {
+          /* Adjust button styles to be smaller and fit within the container */
+          padding: 3px 9px; /* Reduced padding */
+          font-size: 6px; /* Smaller font size */
+          margin: 0 2px; /* Small margin to keep buttons from touching */
+          min-width: 0; /* Allow buttons to shrink */
+         
+         margin-bottom: 2px;
+          border-radius: 5%;
+        }
+
+    }
 
     @media (max-width: 400px) {
       .button-container {
@@ -212,7 +269,11 @@
 
     @media screen and (max-width: 1400px) and (orientation: landscape) {
       .canvas {
-        top: calc(50% + 6.6vw)
+        top: calc(50% + 6.6vw);
+          /* For space at the bottom */
+    bottom: 200px;  /* Example with 'bottom' */
+    /* OR */
+    margin-bottom: 300px; /* Example with 'margin-bottom' */
       }
       .button-container{
 
