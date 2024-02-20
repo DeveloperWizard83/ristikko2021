@@ -108,7 +108,7 @@ alert(`Olet ratkaissut ristikosta ${correctnessPercentage} prosenttia.`);
     // Adjust styles for capture
     document.querySelector('.canvas').style.overflow = 'visible';
     document.querySelector('.background').style.position = 'static';
-    document.querySelector('.background').style.transform = 'none';
+    // No need to set transform here, as it will be adjusted in onclone
   
     const crosswordContainerElement = document.querySelector('.canvas');
   
@@ -116,8 +116,12 @@ alert(`Olet ratkaissut ristikosta ${correctnessPercentage} prosenttia.`);
     html2canvas(crosswordContainerElement, {
       scale: 1,
       logging: true,
-      onclone: (document) => {
-        // Modify cloned document styles here if necessary
+      onclone: (clonedDocument) => {
+        const clonedGridContainer = clonedDocument.querySelector('.grid-container');
+        // Apply a negative margin to the left or adjust the left property
+        // This example assumes that the grid-container has a left CSS property set.
+        // You need to adjust the '3.32vw' value to find the correct amount of shift needed.
+        clonedGridContainer.style.transform = `translate(-418px, -462px)`; // Adjust this value accordingly
       }
     }).then(capturedCanvas => {
       // Restore original styles after capture
@@ -140,6 +144,7 @@ alert(`Olet ratkaissut ristikosta ${correctnessPercentage} prosenttia.`);
       console.error('Error generating PDF: ', error);
     });
   };
+  
   
   return (
     <div className="button-container">
