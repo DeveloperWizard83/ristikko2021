@@ -31,7 +31,7 @@ const ButtonContainer = ({ onEraseClick, gridContentRef, selectedItemId}) => {
     };
 
     const handleCheckClick = () => {
-      // Assuming staticNumberMapping's order corresponds to the word "MITTAUS"
+      // Assuming staticNumberMapping's order corresponds to the word "KOSTEA"
       // and that gridContentRef.current holds the current letters keyed by itemId
       const correctWord = "KOSTEA";
       const letterPositions = [23, 29, 42, 70, 93, 107]; // Ids for "KOSTEA"
@@ -42,9 +42,9 @@ const ButtonContainer = ({ onEraseClick, gridContentRef, selectedItemId}) => {
       }
 
       if (formedWord.toUpperCase() === correctWord) {
-          alert("Hienoa, vastaus on oikein"); // Using alert for simplicity
+          alert("Hienoa, ratkaisusana on oikein"); // Using alert for simplicity
       } else {
-          alert("Väärin, yritä uudestaan");
+          alert("Ratkaisusana ei ole oikea, yritä uudestaan");
       }
   };
 

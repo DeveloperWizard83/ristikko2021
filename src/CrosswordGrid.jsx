@@ -32,6 +32,9 @@ const staticNumberMapping = {
     // ... other static number mappings
 };
 
+const LOCAL_STORAGE_KEY = 'ristikko2021';
+
+
 function createGridVectors() {
     const grid = [];
     const specialItems = [15, 25, 45, 57, 58, 60, 62, 64, 65, 66, 75, 85, 105];
@@ -70,7 +73,7 @@ function CrosswordGrid() {
 
     useEffect(() => {
         // Load saved content or initialize an empty object
-        const savedContent = window.localStorage.getItem('gridContent');
+        const savedContent = window.localStorage.getItem('LOCAL_STORAGE_KEY');
         gridContentRef.current = savedContent ? JSON.parse(savedContent) : {};
 
         setGridVectors(createGridVectors());
@@ -111,7 +114,7 @@ function CrosswordGrid() {
         const updatedContent = { ...gridContentRef.current, [selectedItemId]: letter };
         gridContentRef.current = updatedContent;
         setGridVectors(createGridVectors());
-        window.localStorage.setItem('gridContent', JSON.stringify(updatedContent));
+        window.localStorage.setItem('LOCAL_STORAGE_KEY', JSON.stringify(updatedContent));
     };
 
     const deleteGridLetter = () => {
@@ -119,7 +122,7 @@ function CrosswordGrid() {
         const updatedContent = { ...gridContentRef.current, [selectedItemId]: '' };
         gridContentRef.current = updatedContent;
         setGridVectors(createGridVectors());
-        window.localStorage.setItem('gridContent', JSON.stringify(updatedContent));
+        window.localStorage.setItem('LOCAL_STORAGE_KEY', JSON.stringify(updatedContent));
     };
 
     const handleTouchStart = (e) => {
@@ -263,7 +266,7 @@ function CrosswordGrid() {
             moveGridItemFocus(1);
         }
     
-        window.localStorage.setItem('gridContent', JSON.stringify(updatedContent));
+        window.localStorage.setItem('LOCAL_STORAGE_KEY', JSON.stringify(updatedContent));
     };
     const clearAllLetters = () => {
         const clearedContent = Object.keys(gridContentRef.current).reduce((acc, key) => {
@@ -272,7 +275,7 @@ function CrosswordGrid() {
         }, {});
     
         gridContentRef.current = clearedContent;
-        window.localStorage.setItem('gridContent', JSON.stringify(clearedContent));
+        window.localStorage.setItem('LOCAL_STORAGE_KEY', JSON.stringify(clearedContent));
         setGridVectors(createGridVectors()); // Re-render grid with cleared letters
     };
     
