@@ -74,6 +74,7 @@
         transform: translateX(-50%); /* Add this to shift the container back to the center */
         justify-content: center;
         opacity: 0.5;
+        margin-bottom: 100px;
         width: 100%; /* Stretch the container across the width of the screen */
         max-width: 750px; /* Set a max-width to prevent it from getting too wide */
         z-index: 1; /* Make sure this is not higher than the crossword grid's z-index */
