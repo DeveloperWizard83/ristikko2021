@@ -157,7 +157,7 @@
         right: 7px;
         width: 9vw; /* Full width to use the entire screen width */
         z-index: 10; /* Ensure it's above the keyboard container */
-        opacity: 0.5;
+        
         padding: 10px 0; /* Add some padding at the top and bottom */
         box-sizing: border-box; /* Include padding in the width calculation */
         display: flex; /* Use flexbox for internal alignment */
@@ -189,6 +189,7 @@
             transform: translateX(-50%); /* Add this to shift the container back to the center */
             justify-content: center;
             margin-bottom: 20px;
+            opacity: 0.5;
             width: 100%; /* Stretch the container across the width of the screen */
             max-width: 750px; /* Set a max-width to prevent it from getting too wide */
             z-index: 1; /* Make sure this is not higher than the crossword grid's z-index */
