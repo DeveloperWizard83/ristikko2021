@@ -95,12 +95,18 @@ alert(`Olet ratkaissut ristikosta ${correctnessPercentage} prosenttia.`);
 
 
   const handleDownloadClick = () => {
+    // Example current zoom level determination (This is a placeholder; actual implementation may vary)
+    const currentZoomLevel = 1; // This needs to be determined somehow; 1 would mean 100% zoom
+    const requiredScale = 1 / currentZoomLevel;
+  
     // Temporarily adjust styles for capture
     const originalStyles = {
       overflow: document.querySelector('.canvas').style.overflow,
       position: document.querySelector('.background').style.position,
-      transform: document.querySelector('.background').style.transform
+      transform: document.querySelector('.background').style.transform,
+      canvasTransform: document.querySelector('.canvas').style.transform // Store original canvas transform
     };
+  
     const buttonContainer = document.querySelector('.button-container');
     const originalDisplay = buttonContainer.style.display;
     buttonContainer.style.display = 'none'; // Hide buttons
@@ -108,19 +114,17 @@ alert(`Olet ratkaissut ristikosta ${correctnessPercentage} prosenttia.`);
     // Adjust styles for capture
     document.querySelector('.canvas').style.overflow = 'visible';
     document.querySelector('.background').style.position = 'static';
-    // No need to set transform here, as it will be adjusted in onclone
+    // Apply scale to counteract browser zoom
+    document.querySelector('.canvas').style.transform = `scale(${requiredScale})`;
   
     const crosswordContainerElement = document.querySelector('.canvas');
   
     // Use html2canvas to capture the crossword container
     html2canvas(crosswordContainerElement, {
-      scale: 1,
+      scale: requiredScale, // Adjust scale based on the zoom level
       logging: true,
       onclone: (clonedDocument) => {
         const clonedGridContainer = clonedDocument.querySelector('.grid-container');
-        // Apply a negative margin to the left or adjust the left property
-        // This example assumes that the grid-container has a left CSS property set.
-        // You need to adjust the '3.32vw' value to find the correct amount of shift needed.
         clonedGridContainer.style.transform = `translate(-421px, -465px)`; // Adjust this value accordingly
       }
     }).then(capturedCanvas => {
@@ -128,6 +132,7 @@ alert(`Olet ratkaissut ristikosta ${correctnessPercentage} prosenttia.`);
       document.querySelector('.canvas').style.overflow = originalStyles.overflow;
       document.querySelector('.background').style.position = originalStyles.position;
       document.querySelector('.background').style.transform = originalStyles.transform;
+      document.querySelector('.canvas').style.transform = originalStyles.canvasTransform; // Restore original canvas transform
       buttonContainer.style.display = originalDisplay;
   
       const imgData = capturedCanvas.toDataURL('image/png');
