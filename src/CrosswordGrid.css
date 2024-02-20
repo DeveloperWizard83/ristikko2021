@@ -10,7 +10,7 @@
   position: absolute;
   top: 50%; /* Center vertically */
   left: 50%; /* Center horizontally */
-  transform: translate(-50%, -33%); /* Center the element */
+  transform: translate(-50%, -36%); /* Center the element */
   height: 79.6vw; /* Height relative to viewport width */
   width: 66.3vw; /* Width relative to viewport width */
   background-image: url('assets/images/tausta.png');
@@ -20,8 +20,8 @@
 }
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(10, 4.3vw);
-  grid-template-rows: repeat(11, 4.42vw);
+  grid-template-columns: repeat(10, 4.32vw);
+  grid-template-rows: repeat(11, 4.44vw);
   position: absolute;
   top: calc(50% + 14.6vw); /* Adjust 20px to whatever value you need to move it down */
   left: calc(50% + 0.9vw); /* Adjust 20px to whatever value you need to move it right */

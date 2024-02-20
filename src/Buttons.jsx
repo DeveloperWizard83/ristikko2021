@@ -121,7 +121,7 @@ alert(`Olet ratkaissut ristikosta ${correctnessPercentage} prosenttia.`);
         // Apply a negative margin to the left or adjust the left property
         // This example assumes that the grid-container has a left CSS property set.
         // You need to adjust the '3.32vw' value to find the correct amount of shift needed.
-        clonedGridContainer.style.transform = `translate(-418px, -462px)`; // Adjust this value accordingly
+        clonedGridContainer.style.transform = `translate(-421px, -465px)`; // Adjust this value accordingly
       }
     }).then(capturedCanvas => {
       // Restore original styles after capture
