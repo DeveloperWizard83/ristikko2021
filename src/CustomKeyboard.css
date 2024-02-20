@@ -3,7 +3,7 @@
 
     
 }
-@media (min-width: 1401px) and (max-width: 1919px) {
+@media (min-width: 1401px) and (max-width: 2150px) {
   .button-container {
     position: absolute; /* or 'fixed' if you want it to stay in place on scroll */
     right: 5px; /* Adjust as necessary for proper spacing */
