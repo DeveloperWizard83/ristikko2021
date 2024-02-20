@@ -202,9 +202,9 @@
             position: fixed;
             bottom: 0;
             left: 50%; /* Add this to start the container in the center */
-            transform: translateX(-48%); /* Add this to shift the container back to the center */
+            transform: translateX(-40%); /* Add this to shift the container back to the center */
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 150px;
             opacity: 0.5;
             width: 100%; /* Stretch the container across the width of the screen */
             max-width: 750px; /* Set a max-width to prevent it from getting too wide */

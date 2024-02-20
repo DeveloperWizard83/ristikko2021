@@ -1,7 +1,7 @@
 .canvas {
   position: absolute;
   overflow: hidden;
-
+margin-left: 75px;
 
  
 }
@@ -300,6 +300,11 @@
     left: 3px;
     
   }
+  .grid-item {
+   
+    font-size: 16px;
+   
+  }
 
 }
 @media screen and (max-width: 650px) {
@@ -307,7 +312,7 @@
   
   .grid-item {
    
-    font-size: 20px;
+    font-size: 16px;
    
   }
   .static-number {
