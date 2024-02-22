@@ -180,29 +180,42 @@ function CrosswordGrid() {
         };
     }, [selectedItemId, selectionMode]);
 
+ 
     const handleClick = (itemId) => {
         event.preventDefault();
         event.stopPropagation();
-        // Toggle selection mode if the same item is clicked consecutively
         if (invisibleInputRef.current) {
             invisibleInputRef.current.focus({ preventScroll: true });
         }
+    
+        // Determine if vertical selection should be prioritized based on the grid's current state
+        const shouldSelectVerticalFirst = determineSelectionMode(itemId, gridVectors);
+    
         if (lastClickedItem === itemId) {
+            // Toggle selection mode if the same item is clicked consecutively
             setSelectionMode(prevMode => prevMode === 'horizontal' ? 'vertical' : 'horizontal');
         } else {
-            setSelectionMode('horizontal'); // Default to horizontal on first click
+            // Set selection mode based on the result from determineSelectionMode
+            // This is where we use the logic to potentially prioritize vertical selection
+            setSelectionMode(shouldSelectVerticalFirst ? 'vertical' : 'horizontal');
         }
+    
         setSelectedItemId(itemId);
         setLastClickedItem(itemId);
-        const gridItemNode = document.getElementById(`cell-${itemId}`);
-    if (gridItemNode) {
-        gridItemNode.focus();
-    }
-    if (invisibleInputRef.current) {
-        invisibleInputRef.current.focus();
-    }
     };
+
+    function determineSelectionMode(itemId, gridVectors) {
+        // Assuming the grid is 10 columns wide as seen in the crossword images
+        const columns = 10;
+        const rowIndex = Math.floor((itemId - 1) / columns);
+        const colIndex = (itemId - 1) % columns;
     
+        let hasLeftNeighbor = colIndex > 0 && !gridVectors[rowIndex * columns + (colIndex - 1)].isSpecial;
+        let hasRightNeighbor = colIndex < columns - 1 && !gridVectors[rowIndex * columns + (colIndex + 1)].isSpecial;
+    
+        // If there are no horizontal neighbors, prioritize vertical selection
+        return !(hasLeftNeighbor || hasRightNeighbor);
+    }
 
     const moveGridItemFocus = (step) => {
         if (!selectedItemId) return;

@@ -125,7 +125,7 @@ alert(`Olet ratkaissut ristikosta ${correctnessPercentage} prosenttia.`);
       logging: true,
       onclone: (clonedDocument) => {
         const clonedGridContainer = clonedDocument.querySelector('.grid-container');
-        clonedGridContainer.style.transform = `translate(-376px, -416px)`; // Adjust this value accordingly
+        clonedGridContainer.style.transform = `translate(-338px, -415px)`; // Adjust this value accordingly
       }
     }).then(capturedCanvas => {
       // Restore original styles after capture
